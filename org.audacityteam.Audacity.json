@@ -72,6 +72,7 @@
             "config-opts": [
                 "--enable-shared",
                 "--disable-static",
+                "--disable-programs",
                 "--disable-everything",
                 "--enable-libopus",
                 "--enable-libmp3lame",
@@ -103,6 +104,10 @@
         },
         {
             "name": "audacity",
+            "cleanup": [
+                "/share/audacity/include",
+                "/share/pixmaps"
+            ],
             "config-opts": ["--disable-dynamic-loading"],
             "build-options": {
                 "arch" : {
