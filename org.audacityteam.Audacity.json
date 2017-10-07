@@ -49,6 +49,17 @@
                 }
             ]
         },
+        "shared-modules/lame/lame-3.99.5.json",
+        {
+            "name": "opus",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://archive.mozilla.org/pub/opus/opus-1.2.tar.gz",
+                    "sha256": "77db45a87b51578fbc49555ef1b10926179861d854eb2613207dc79d9ec0a9a9"
+                }
+            ]
+        },
         {
             "name": "ffmpeg",
             "cleanup": ["/share/ffmpeg/examples"],
@@ -62,19 +73,25 @@
                 "--enable-shared",
                 "--disable-static",
                 "--disable-everything",
+                "--enable-libopus",
+                "--enable-libmp3lame",
                 "--enable-decoder=aac",
                 "--enable-decoder=ac3",
                 "--enable-decoder=wmav2",
+                "--enable-decoder=opus",
+                "--enable-decoder=mp3",
                 "--enable-encoder=aac",
                 "--enable-encoder=ac3",
                 "--enable-encoder=wmav2",
                 "--enable-demuxer=aac",
                 "--enable-demuxer=ac3",
+                "--enable-demuxer=mp3",
                 "--enable-muxer=ac3",
                 "--enable-muxer=asf",
                 "--enable-muxer=ipod",
                 "--enable-parser=aac",
-                "--enable-parser=ac3"
+                "--enable-parser=ac3",
+                "--enable-parser=opus"
             ],
             "sources": [
                 {
@@ -84,7 +101,6 @@
                 }
             ]
         },
-        "shared-modules/lame/lame-3.99.5.json",
         {
             "name": "audacity",
             "config-opts": ["--disable-dynamic-loading"],
