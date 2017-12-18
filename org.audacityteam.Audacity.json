@@ -79,7 +79,11 @@
                 "--enable-libmp3lame",
                 "--enable-decoder=aac",
                 "--enable-decoder=ac3",
+                "--enable-decoder=wmav1",
                 "--enable-decoder=wmav2",
+                "--enable-decoder=wmalossless",
+                "--enable-decoder=wmapro",
+                "--enable-decoder=wmavoice",
                 "--enable-decoder=opus",
                 "--enable-decoder=mp3",
                 "--enable-encoder=aac",
@@ -87,7 +91,9 @@
                 "--enable-encoder=wmav2",
                 "--enable-demuxer=aac",
                 "--enable-demuxer=ac3",
+                "--enable-demuxer=mov",
                 "--enable-demuxer=mp3",
+                "--enable-demuxer=wma",
                 "--enable-muxer=ac3",
                 "--enable-muxer=asf",
                 "--enable-muxer=ipod",
@@ -151,8 +157,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://fossies.org/linux/misc/audacity-minsrc-2.2.0.tar.xz",
-                    "sha256": "87635ed19ebcc80d6e4bb88d578c67277c63a02bd22d09d5489080ad216f606b"
+                    "url": "https://fossies.org/linux/misc/audacity-minsrc-2.2.1.tar.xz",
+                    "sha256": "b89f97f1a214e299a0df6dbea3903aa66bcdc6178e8016767e387ee4b80917fc"
                 }
             ],
             "post-install": [
