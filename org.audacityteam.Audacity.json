@@ -1,14 +1,20 @@
 {
     "app-id": "org.audacityteam.Audacity",
-    "runtime": "org.gnome.Platform",
-    "runtime-version": "3.26",
-    "sdk": "org.gnome.Sdk",
+    "branch": "stable",
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "1.6",
+    "sdk": "org.freedesktop.Sdk",
     "command": "audacity",
     "finish-args": [
         "--share=ipc",
         "--socket=x11",
         "--socket=pulseaudio",
-        "--filesystem=host"
+        "--filesystem=host",
+
+        "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
+        "--filesystem=xdg-run/dconf",
+        "--filesystem=~/.config/dconf:ro",
+        "--talk-name=ca.desrt.dconf"
     ],
     "rename-appdata-file": "audacity.appdata.xml",
     "rename-desktop-file": "audacity.desktop",
@@ -24,24 +30,40 @@
         {
             "name": "wxWidgets",
             "rm-configure": true,
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.3/wxWidgets-3.0.3.tar.bz2",
-                    "sha256": "08c8033f48ec1b23520f036cde37b5ae925a6a65f137ded665633ca159b9307b"
-                },
-                {
-                    "type": "script",
-                    "path": "autogen.sh",
-                    "commands": [
-                        "cp -p /usr/share/automake-*/config.{sub,guess} .",
-                        "autoconf -f -B build/autoconf_prepend-include"
-                    ]
-                }
-            ],
             "cleanup": [
                 "/bin",
-                "/share/bakefile"
+                "/include",
+                "/share/bakefile",
+                "/share/aclocal"
+            ],
+            "config-opts": [
+                  "--with-libpng",
+                  "--with-zlib",
+                  "--disable-sdltest",
+                  "--disable-webkit",
+                  "--disable-webview",
+                  "--disable-webviewwebkit",
+                  "--disable-ribbon",
+                  "--disable-propgrid",
+                  "--disable-xru",
+                  "--disable-richtext",
+                  "--with-expat=builtin",
+                  "--with-libiconv=/usr"
+              ],
+              "sources": [
+                 {
+                     "type": "archive",
+                     "url": "https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.3.1/wxWidgets-3.0.3.1.tar.bz2",
+                     "sha256":"3164ad6bc5f61c48d2185b39065ddbe44283eb834a5f62beb13f1d0923e366e4"
+                 },
+                 {
+                     "type": "script",
+                     "dest-filename": "autogen.sh",
+                     "commands": [
+                         "cp -p /usr/share/automake-*/config.{sub,guess} .",
+                         "autoconf -f -B build/autoconf_prepend-include"
+                     ]
+                 }
             ]
         },
         "shared-modules/lame/lame-3.99.5.json",
