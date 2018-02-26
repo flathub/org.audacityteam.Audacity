@@ -181,8 +181,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://fossies.org/linux/misc/audacity-minsrc-2.2.1.tar.xz",
-                    "sha256": "b89f97f1a214e299a0df6dbea3903aa66bcdc6178e8016767e387ee4b80917fc"
+                    "url": "https://fossies.org/linux/misc/audacity-minsrc-2.2.2.tar.xz",
+                    "sha256": "97751a00e33026b61d05057c1525d6dddfd4e64737bd35f59dc2e21e3d6762e2"
                 }
             ],
             "post-install": [
