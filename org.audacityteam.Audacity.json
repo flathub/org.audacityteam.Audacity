@@ -183,10 +183,16 @@
                     "type": "archive",
                     "url": "https://fossies.org/linux/misc/audacity-minsrc-2.2.2.tar.xz",
                     "sha256": "97751a00e33026b61d05057c1525d6dddfd4e64737bd35f59dc2e21e3d6762e2"
+                },
+                {
+                    "type": "file",
+                    "path": "audacity.appdata.xml"
                 }
             ],
             "post-install": [
-                "mv /app/share/mime/packages/audacity.xml /app/share/mime/packages/org.audacityteam.Audacity.xml"
+                "mv /app/share/mime/packages/audacity.xml /app/share/mime/packages/org.audacityteam.Audacity.xml",
+                "rm /app/share/appdata/audacity.appdata.xml",
+                "install -Dm644 -t /app/share/appdata audacity.appdata.xml"
             ]
         }
     ]
