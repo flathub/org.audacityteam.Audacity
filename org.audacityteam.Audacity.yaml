@@ -126,6 +126,7 @@ modules:
       - --enable-shared
       - --disable-static
       - --disable-dynamic-loading
+      - --without-libmad
     build-options:
       arch:
         i386:
