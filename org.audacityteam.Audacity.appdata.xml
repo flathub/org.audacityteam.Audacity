@@ -6,6 +6,8 @@
   <metadata_license>CC0-1.0</metadata_license>
   <name>Audacity</name>
   <summary>Record and edit audio files</summary>
+  <summary xml:lang="pt_BR">Editor de áudio para gravar, cortar e misturar sons</summary>
+  <summary xml:lang="es">Editor para grabar, cortar y mezclar audio</summary>
   <description>
     <p>Audacity® is a free, easy-to-use, multi-track audio editor and recorder for Windows, Mac OS X, GNU/Linux and other operating systems. The interface is translated into many languages.</p>
     <p>You can use Audacity to:</p>
@@ -18,6 +20,9 @@
       <li>Apply a wide range of other effects to audio recordings</li>
     </ul>
   </description>
+  <description xml:lang="pt_BR"><p>Você já teve vontade de fazer suas próprias gravações ou músicas? Com este programa você será capaz de acessar todas as ferramentas que você precisa para editar arquivos de áudio, gravações e músicas, que você poderá tocar para os seus amigos e familiares. Crie gravações e músicas de alta qualidade e, quem sabe, até compartilhe isso com o mundo!</p></description>
+  <description xml:lang="es"><p>¿Alguna vez quisiste hacer tus propias canciones o clips de audio? Con este programa, podrás tener acceso a todas las herramientas necesarias para crear clips de audio. Podrás mostrarlas a tus amigos y a tu familia. ¡Crea canciones y clips de alta calidad que podrás incluso compartir con el mundo!</p></description>
+
   <url type="homepage">https://www.audacityteam.org/</url>
   <url type="bugtracker">https://bugzilla.audacityteam.org/</url>
   <url type="faq">https://manual.audacityteam.org/man/faq.html</url>
