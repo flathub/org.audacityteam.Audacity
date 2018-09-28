@@ -5,11 +5,11 @@
   <project_license>GPL-2.0 and CC-BY-3.0</project_license>
   <metadata_license>CC0-1.0</metadata_license>
   <name>Audacity</name>
-  <summary>Record and edit audio files</summary>
+  <summary>Audio editor for recording, slicing, and mixing audio</summary>
   <summary xml:lang="pt_BR">Editor de áudio para gravar, cortar e misturar sons</summary>
   <summary xml:lang="es">Editor para grabar, cortar y mezclar audio</summary>
   <description>
-    <p>Audacity® is a free, easy-to-use, multi-track audio editor and recorder for Windows, Mac OS X, GNU/Linux and other operating systems. The interface is translated into many languages.</p>
+    <p>Have you ever wanted to make your own audio clips or songs? With this app, you'll be able to access all the tools you need to create audio clips that you can play for your friends and family. Create high quality clips and songs that you can even share with the world!</p>
     <p>You can use Audacity to:</p>
     <ul>
       <li>Record live audio</li>
