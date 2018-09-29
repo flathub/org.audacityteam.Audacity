@@ -16,6 +16,12 @@ finish-args:
   - --filesystem=~/.config/dconf:ro
   - --talk-name=ca.desrt.dconf
   - --env=ALSA_CONFIG_PATH=
+add-extensions:
+  org.audacityteam.Audacity.Codecs:
+    directory: lib/codecs
+    add-ld-path: lib
+    bundle: true
+    autodelete: true
 cleanup:
   - /include
   - /lib/pkgconfig
@@ -74,6 +80,35 @@ modules:
       - --disable-everything
       - --enable-libopus
       - --enable-libmp3lame
+      - --enable-decoder=ac3
+      - --enable-decoder=opus
+      - --enable-decoder=mp3
+      - --enable-encoder=ac3
+      - --enable-demuxer=ac3
+      - --enable-demuxer=mov
+      - --enable-demuxer=mp3
+      - --enable-demuxer=ogg
+      - --enable-muxer=ac3
+      - --enable-muxer=ipod
+      - --enable-muxer=opus
+      - --enable-parser=ac3
+      - --enable-parser=opus
+    cleanup:
+      - /share/ffmpeg/examples
+    sources:
+      - type: archive
+        url: https://ffmpeg.org/releases/ffmpeg-4.0.2.tar.xz
+        sha256: a95c0cc9eb990e94031d2183f2e6e444cc61c99f6f182d1575c433d62afb2f97
+
+  - name: ffmpeg-codecs
+    config-opts:
+      - --enable-shared
+      - --disable-static
+      - --disable-programs
+      - --disable-doc
+      - --disable-everything
+      - --enable-libopus
+      - --enable-libmp3lame
       - --enable-decoder=aac
       - --enable-decoder=ac3
       - --enable-decoder=wmav1
@@ -99,8 +134,11 @@ modules:
       - --enable-parser=aac
       - --enable-parser=ac3
       - --enable-parser=opus
+      - --prefix=/app/lib/codecs
     cleanup:
-      - /share/ffmpeg/examples
+      - /lib/codecs/include
+      - /lib/codecs/lib/pkgconfig
+      - /lib/codecs/share
     sources:
       - type: archive
         url: https://ffmpeg.org/releases/ffmpeg-4.0.2.tar.xz
@@ -140,6 +178,7 @@ modules:
           config-opts:
             - --disable-sse
     post-install:
+      - chrpath -d /app/bin/audacity
       - mv /app/share/mime/packages/audacity.xml /app/share/mime/packages/org.audacityteam.Audacity.xml
       - rm -rf /app/share/appdata
       - install -Dm644 -t /app/share/metainfo org.audacityteam.Audacity.appdata.xml
