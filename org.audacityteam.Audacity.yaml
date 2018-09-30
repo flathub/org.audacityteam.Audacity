@@ -1,10 +1,11 @@
 app-id: org.audacityteam.Audacity
 branch: stable
 runtime: org.freedesktop.Platform
-runtime-version: 1.6
+runtime-version: '1.6'
 sdk: org.freedesktop.Sdk
 command: audacity
 rename-desktop-file: audacity.desktop
+rename-appdata-file: audacity.appdata.xml
 rename-icon: audacity
 finish-args:
   - --share=ipc
@@ -180,15 +181,11 @@ modules:
     post-install:
       - chrpath -d /app/bin/audacity
       - mv /app/share/mime/packages/audacity.xml /app/share/mime/packages/org.audacityteam.Audacity.xml
-      - rm -rf /app/share/appdata
-      - install -Dm644 -t /app/share/metainfo org.audacityteam.Audacity.appdata.xml
     cleanup:
       - /share/audacity/include
       - /share/pixmaps
     sources:
-      - type: file
-        path: org.audacityteam.Audacity.appdata.xml
       - type: archive
-        url: https://github.com/audacity/audacity/archive/Audacity-2.2.2.tar.gz
-        sha256: 759e8efd5e4ff6cc2fdd31b36bc631307330c1a6e2d3426e3f1d46ebcf8907a3
+        url: https://github.com/audacity/audacity/archive/Audacity-2.3.0.tar.gz
+        sha256: 37127f68dceeb5da08d008ec9373a65e2d5d0a9b937c808a5d7c3b88aa9e275e
   
