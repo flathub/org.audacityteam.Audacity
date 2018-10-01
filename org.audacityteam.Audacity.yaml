@@ -149,6 +149,12 @@ modules:
           - cp /usr/share/gnu-config/config.sub .
           - cp /usr/share/gnu-config/config.guess .
 
+  - name: chrpath
+    sources:
+      - type: archive
+        url: https://sourceforge.net/projects/pisilinux/files/source/chrpath-0.16.tar.gz
+        sha256: bb0d4c54bac2990e1bdf8132f2c9477ae752859d523e141e72b3b11a12c26e7b
+
   - name: audacity
     config-opts:
       - --enable-shared
