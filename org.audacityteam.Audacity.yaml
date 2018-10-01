@@ -1,7 +1,7 @@
 app-id: org.audacityteam.Audacity
 branch: stable
 runtime: org.freedesktop.Platform
-runtime-version: '1.6'
+runtime-version: '18.08'
 sdk: org.freedesktop.Sdk
 command: audacity
 rename-desktop-file: audacity.desktop
@@ -31,8 +31,6 @@ cleanup:
   - '*.la'
   - '*.a'
 modules:
-  - shared-modules/lame/lame-3.99.5.json
-
   - name: wxwidgets
     rm-configure: true
     config-opts:
@@ -61,16 +59,6 @@ modules:
       - type: archive
         url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.4/wxWidgets-3.0.4.tar.bz2
         sha256: 96157f988d261b7368e5340afa1a0cad943768f35929c22841f62c25b17bf7f0
-
-  - name: opus
-    config-opts:
-      - --disable-static
-      - --disable-doc
-      - --disable-extra-programs
-    sources:
-      - type: archive
-        url: https://archive.mozilla.org/pub/opus/opus-1.2.1.tar.gz
-        sha256: cfafd339ccd9c5ef8d6ab15d7e1a412c054bf4cb4ecbbbcc78c12ef2def70732
 
   - name: ffmpeg
     config-opts:
@@ -160,6 +148,14 @@ modules:
         commands:
           - cp /usr/share/gnu-config/config.sub .
           - cp /usr/share/gnu-config/config.guess .
+
+  - name: chrpath
+    sources:
+      - type: archive
+        url: https://sourceforge.net/projects/pisilinux/files/source/chrpath-0.16.tar.gz
+        sha256: bb0d4c54bac2990e1bdf8132f2c9477ae752859d523e141e72b3b11a12c26e7b
+    cleanup:
+      - '*'
 
   - name: audacity
     config-opts:
