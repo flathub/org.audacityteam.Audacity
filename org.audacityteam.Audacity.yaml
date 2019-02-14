@@ -1,11 +1,13 @@
 app-id: org.audacityteam.Audacity
-branch: stable
+
 runtime: org.freedesktop.Platform
 runtime-version: '18.08'
 sdk: org.freedesktop.Sdk
+
 command: audacity
 rename-desktop-file: audacity.desktop
 rename-icon: audacity
+
 finish-args:
   - --share=ipc
   - --socket=x11
@@ -16,12 +18,14 @@ finish-args:
   - --filesystem=~/.config/dconf:ro
   - --talk-name=ca.desrt.dconf
   - --env=ALSA_CONFIG_PATH=
+
 add-extensions:
   org.audacityteam.Audacity.Codecs:
     directory: lib/codecs
     add-ld-path: lib
     bundle: true
     autodelete: true
+
 cleanup:
   - /include
   - /lib/pkgconfig
@@ -29,6 +33,7 @@ cleanup:
   - /share/man
   - '*.la'
   - '*.a'
+
 modules:
   - name: wxwidgets
     rm-configure: true
