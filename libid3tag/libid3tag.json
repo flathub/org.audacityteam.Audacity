@@ -31,6 +31,10 @@
       "strip-components": 0
     },
     {
+      "type": "patch",
+      "path": "libid3tag-0.15.1b-gperf-size_t.patch"
+    },
+    {
       "type": "file",
       "path": "id3tag.pc"
     },
