@@ -174,8 +174,8 @@ modules:
       - type: file
         path: org.audacityteam.Audacity.appdata.xml
       - type: archive
-        url: https://github.com/audacity/audacity/archive/Audacity-2.2.2.tar.gz
-        sha256: 759e8efd5e4ff6cc2fdd31b36bc631307330c1a6e2d3426e3f1d46ebcf8907a3
+        url: https://www.fosshub.com/Audacity.html/audacity-minsrc-2.3.1.tar.xz
+        sha256: f99f198a4d653aeee1f8967670f3edb4f74a81393bb14479d969f8aef9cdf923
     cleanup:
       - /share/audacity/include
       - /share/pixmaps
