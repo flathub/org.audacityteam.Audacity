@@ -174,7 +174,7 @@ modules:
       - type: file
         path: org.audacityteam.Audacity.appdata.xml
       - type: archive
-        url: https://www.fosshub.com/Audacity.html?dwl=audacity-minsrc-2.3.1.tar.xz
+        url: https://github.com/audacity/audacity/archive/Audacity-2.3.1.tar.gz
         sha256: f99f198a4d653aeee1f8967670f3edb4f74a81393bb14479d969f8aef9cdf923
     cleanup:
       - /share/audacity/include
