@@ -171,8 +171,6 @@ modules:
 #      - install -Dm644 -t /app/share/metainfo org.audacityteam.Audacity.appdata.xml
 #      - sed -i s/audacity.desktop/org.audacityteam.Audacity.desktop/ /app/share/metainfo/org.audacityteam.Audacity.appdata.xml
     sources:
-      - type: file
-        path: org.audacityteam.Audacity.appdata.xml
       - type: archive
         url: https://github.com/audacity/audacity/archive/Audacity-2.3.1.tar.gz
         sha256: 2ef1c06f9cdc2ee3d315b8e575dc2bea5b372f4f415f3dc6570c3cfca0f93321
