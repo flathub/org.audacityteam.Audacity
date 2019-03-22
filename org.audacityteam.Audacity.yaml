@@ -166,10 +166,10 @@ modules:
             - --disable-sse
     post-install:
       - chrpath -d /app/bin/audacity
-      - mv /app/share/mime/packages/audacity.xml /app/share/mime/packages/org.audacityteam.Audacity.xml
+#      - mv /app/share/mime/packages/audacity.xml /app/share/mime/packages/org.audacityteam.Audacity.xml
       - rm -rf /app/share/appdata
       - install -Dm644 -t /app/share/metainfo org.audacityteam.Audacity.appdata.xml
-      - sed -i s/audacity.desktop/org.audacityteam.Audacity.desktop/ /app/share/metainfo/org.audacityteam.Audacity.appdata.xml
+#      - sed -i s/audacity.desktop/org.audacityteam.Audacity.desktop/ /app/share/metainfo/org.audacityteam.Audacity.appdata.xml
     sources:
       - type: file
         path: org.audacityteam.Audacity.appdata.xml
