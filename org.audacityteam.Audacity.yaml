@@ -165,6 +165,9 @@ modules:
         aarch64:
           config-opts:
             - --disable-sse
+    post-install:
+      - chrpath -d /app/bin/audacity
+      - mv /app/share/mime/packages/audacity.xml /app/share/mime/packages/org.audacityteam.Audacity.xml            
     sources:
       - type: archive
         url: https://github.com/audacity/audacity/archive/Audacity-2.3.1.tar.gz
