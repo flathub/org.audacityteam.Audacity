@@ -170,8 +170,8 @@ modules:
       - mv /app/share/mime/packages/audacity.xml /app/share/mime/packages/org.audacityteam.Audacity.xml            
     sources:
       - type: archive
-        url: https://github.com/audacity/audacity/archive/Audacity-2.3.1.tar.gz
-        sha256: 2ef1c06f9cdc2ee3d315b8e575dc2bea5b372f4f415f3dc6570c3cfca0f93321
+        url: https://github.com/audacity/audacity/archive/Audacity-2.3.2.tar.gz
+        sha256: cc477a71ff5571c72887a7a155365b07a1a50bcea1abf490a4de7b884376c731
     cleanup:
       - /share/audacity/include
       - /share/pixmaps
