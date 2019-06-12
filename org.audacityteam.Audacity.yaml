@@ -172,6 +172,8 @@ modules:
       - type: archive
         url: https://github.com/audacity/audacity/archive/Audacity-2.3.2.tar.gz
         sha256: cc477a71ff5571c72887a7a155365b07a1a50bcea1abf490a4de7b884376c731
+      - type: patch
+        path: appdata-add-oars.patch
     cleanup:
       - /share/audacity/include
       - /share/pixmaps
