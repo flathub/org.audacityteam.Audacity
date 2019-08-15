@@ -4,7 +4,7 @@ runtime: org.freedesktop.Platform
 runtime-version: '18.08'
 sdk: org.freedesktop.Sdk
 
-command: audacity
+command: audacity_wrapper
 rename-desktop-file: audacity.desktop
 rename-icon: audacity
 rename-appdata-file: audacity.appdata.xml
@@ -168,12 +168,32 @@ modules:
     post-install:
       - chrpath -d /app/bin/audacity
       - mv /app/share/mime/packages/audacity.xml /app/share/mime/packages/org.audacityteam.Audacity.xml            
+      # Wrapper
+      - install -Dm0755 audacity_wrapper /app/bin/
+      - sed -i '/^Exec=/s/audacity/\0_wrapper/' /app/share/applications/audacity.desktop
+      # Use 'Portable Settings' to overwrite data dir
+      - ln -s /var/config/audacity "/app/bin/Portable Settings"
     sources:
       - type: archive
         url: https://github.com/audacity/audacity/archive/Audacity-2.3.2.tar.gz
         sha256: cc477a71ff5571c72887a7a155365b07a1a50bcea1abf490a4de7b884376c731
       - type: patch
         path: appdata-add-oars.patch
+      - type: script
+        dest-filename: audacity_wrapper
+        commands:
+          - |
+            DATA_DIR="/var/config/audacity"
+            OLD_DATA_DIR="${HOME}/.audacity-data"
+            # Try to migrate old data dir
+            if [ ! -d "${DATA_DIR}" -a -d "${OLD_DATA_DIR}" ]; then
+              echo "Flatpak: Migrating data dir..." >&2
+              temp_data_dir="$(mktemp --directory "${DATA_DIR}.XXXXXXXXXX")" || exit 1
+              cp -r "${OLD_DATA_DIR}/." "${temp_data_dir}" && mv "${temp_data_dir}" "${DATA_DIR}" || rm -rf "${temp_data_dir}"
+            fi
+            # Ensure 'Portable Settings' symlink exists
+            mkdir -p "${DATA_DIR}" || exit 1  
+            exec audacity
     cleanup:
       - /share/audacity/include
       - /share/pixmaps
