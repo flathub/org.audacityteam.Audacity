@@ -1,7 +1,7 @@
 app-id: org.audacityteam.Audacity
 
 runtime: org.freedesktop.Platform
-runtime-version: '18.08'
+runtime-version: '19.08'
 sdk: org.freedesktop.Sdk
 
 command: audacity
@@ -21,11 +21,10 @@ finish-args:
   - --env=ALSA_CONFIG_PATH=
 
 add-extensions:
-  org.audacityteam.Audacity.Codecs:
-    directory: lib/codecs
-    add-ld-path: lib
-    bundle: true
-    autodelete: true
+  org.freedesktop.Platform.ffmpeg-full:
+    directory": "lib/ffmpeg"
+    version": "19.08"
+    add-ld-path": "."
 
 cleanup:
   - /include
@@ -36,6 +35,8 @@ cleanup:
   - '*.a'
 
 modules:
+  - shared-modules/python2.7/python-2.7.json
+
   - name: wxwidgets
     rm-configure: true
     config-opts:
@@ -64,79 +65,6 @@ modules:
       - /bin
       - /lib/wx
       - /share/bakefile
-
-  - name: ffmpeg
-    config-opts:
-      - --enable-shared
-      - --disable-static
-      - --disable-programs
-      - --disable-doc
-      - --disable-everything
-      - --enable-libopus
-      - --enable-libmp3lame
-      - --enable-decoder=ac3
-      - --enable-decoder=opus
-      - --enable-decoder=mp3
-      - --enable-encoder=ac3
-      - --enable-demuxer=ac3
-      - --enable-demuxer=mov
-      - --enable-demuxer=mp3
-      - --enable-demuxer=ogg
-      - --enable-muxer=ac3
-      - --enable-muxer=ipod
-      - --enable-muxer=opus
-      - --enable-parser=ac3
-      - --enable-parser=opus
-    sources:
-      - type: archive
-        url: https://ffmpeg.org/releases/ffmpeg-4.0.2.tar.xz
-        sha256: a95c0cc9eb990e94031d2183f2e6e444cc61c99f6f182d1575c433d62afb2f97
-    cleanup:
-      - /share/ffmpeg/examples
-
-  - name: ffmpeg-codecs
-    config-opts:
-      - --enable-shared
-      - --disable-static
-      - --disable-programs
-      - --disable-doc
-      - --disable-everything
-      - --enable-libopus
-      - --enable-libmp3lame
-      - --enable-decoder=aac
-      - --enable-decoder=ac3
-      - --enable-decoder=wmav1
-      - --enable-decoder=wmav2
-      - --enable-decoder=wmalossless
-      - --enable-decoder=wmapro
-      - --enable-decoder=wmavoice
-      - --enable-decoder=opus
-      - --enable-decoder=mp3
-      - --enable-encoder=aac
-      - --enable-encoder=ac3
-      - --enable-encoder=wmav2
-      - --enable-demuxer=aac
-      - --enable-demuxer=asf
-      - --enable-demuxer=ac3
-      - --enable-demuxer=mov
-      - --enable-demuxer=mp3
-      - --enable-demuxer=ogg
-      - --enable-muxer=ac3
-      - --enable-muxer=asf
-      - --enable-muxer=ipod
-      - --enable-muxer=opus
-      - --enable-parser=aac
-      - --enable-parser=ac3
-      - --enable-parser=opus
-      - --prefix=/app/lib/codecs
-    sources:
-      - type: archive
-        url: https://ffmpeg.org/releases/ffmpeg-4.0.2.tar.xz
-        sha256: a95c0cc9eb990e94031d2183f2e6e444cc61c99f6f182d1575c433d62afb2f97
-    cleanup:
-      - /lib/codecs/include
-      - /lib/codecs/lib/pkgconfig
-      - /lib/codecs/share
 
   - libid3tag/libid3tag.json
 
