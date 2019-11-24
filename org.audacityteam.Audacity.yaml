@@ -95,38 +95,14 @@ modules:
 
   - name: ffmpeg-codecs
     config-opts:
+      # all codecs/formats are enabled to allow audio extraction from movie files
       - --enable-shared
       - --disable-static
       - --disable-programs
       - --disable-doc
-      - --disable-everything
+      - --disable-avdevice
       - --enable-libopus
       - --enable-libmp3lame
-      - --enable-decoder=aac
-      - --enable-decoder=ac3
-      - --enable-decoder=wmav1
-      - --enable-decoder=wmav2
-      - --enable-decoder=wmalossless
-      - --enable-decoder=wmapro
-      - --enable-decoder=wmavoice
-      - --enable-decoder=opus
-      - --enable-decoder=mp3
-      - --enable-encoder=aac
-      - --enable-encoder=ac3
-      - --enable-encoder=wmav2
-      - --enable-demuxer=aac
-      - --enable-demuxer=asf
-      - --enable-demuxer=ac3
-      - --enable-demuxer=mov
-      - --enable-demuxer=mp3
-      - --enable-demuxer=ogg
-      - --enable-muxer=ac3
-      - --enable-muxer=asf
-      - --enable-muxer=ipod
-      - --enable-muxer=opus
-      - --enable-parser=aac
-      - --enable-parser=ac3
-      - --enable-parser=opus
       - --prefix=/app/lib/codecs
     sources:
       - type: archive
