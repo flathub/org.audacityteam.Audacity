@@ -1,28 +1,23 @@
 app-id: org.audacityteam.Audacity
-
 runtime: org.freedesktop.Platform
 runtime-version: '19.08'
 sdk: org.freedesktop.Sdk
-
 command: audacity
 rename-desktop-file: audacity.desktop
 rename-icon: audacity
 rename-appdata-file: audacity.appdata.xml
-
 finish-args:
   - --share=ipc
   - --socket=x11
   - --socket=pulseaudio
   - --filesystem=host
   - --env=ALSA_CONFIG_PATH=
-
 add-extensions:
   org.audacityteam.Audacity.Codecs:
     directory: lib/codecs
     add-ld-path: lib
     bundle: true
     autodelete: true
-
 cleanup:
   - /include
   - /lib/pkgconfig
@@ -30,7 +25,6 @@ cleanup:
   - /share/man
   - '*.la'
   - '*.a'
-
 modules:
 
   - shared-modules/python2.7/python-2.7.json 
@@ -50,6 +44,10 @@ modules:
       - --disable-richtext
       - --with-expat=builtin
       - --with-libiconv=/usr
+    cleanup:
+      - /bin
+      - /lib/wx
+      - /share/bakefile
     sources:
       - type: script
         dest-filename: autogen.sh
@@ -59,10 +57,6 @@ modules:
       - type: archive
         url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.4/wxWidgets-3.0.4.tar.bz2
         sha256: 96157f988d261b7368e5340afa1a0cad943768f35929c22841f62c25b17bf7f0
-    cleanup:
-      - /bin
-      - /lib/wx
-      - /share/bakefile
 
   - name: ffmpeg
     config-opts:
@@ -86,12 +80,12 @@ modules:
       - --enable-muxer=opus
       - --enable-parser=ac3
       - --enable-parser=opus
+    cleanup:
+      - /share/ffmpeg/examples
     sources:
       - type: archive
         url: https://ffmpeg.org/releases/ffmpeg-4.0.2.tar.xz
         sha256: a95c0cc9eb990e94031d2183f2e6e444cc61c99f6f182d1575c433d62afb2f97
-    cleanup:
-      - /share/ffmpeg/examples
 
   - name: ffmpeg-codecs
     config-opts:
@@ -104,24 +98,24 @@ modules:
       - --enable-libopus
       - --enable-libmp3lame
       - --prefix=/app/lib/codecs
-    sources:
-      - type: archive
-        url: https://ffmpeg.org/releases/ffmpeg-4.0.2.tar.xz
-        sha256: a95c0cc9eb990e94031d2183f2e6e444cc61c99f6f182d1575c433d62afb2f97
     cleanup:
       - /lib/codecs/include
       - /lib/codecs/lib/pkgconfig
       - /lib/codecs/share
+    sources:
+      - type: archive
+        url: https://ffmpeg.org/releases/ffmpeg-4.0.2.tar.xz
+        sha256: a95c0cc9eb990e94031d2183f2e6e444cc61c99f6f182d1575c433d62afb2f97
 
   - libid3tag/libid3tag.json
 
   - name: chrpath
+    cleanup:
+      - '*'
     sources:
       - type: archive
         url: https://sourceforge.net/projects/pisilinux/files/source/chrpath-0.16.tar.gz
         sha256: bb0d4c54bac2990e1bdf8132f2c9477ae752859d523e141e72b3b11a12c26e7b
-    cleanup:
-      - '*'
 
   - name: audacity
     config-opts:
@@ -142,7 +136,10 @@ modules:
             - --disable-sse
     post-install:
       - chrpath -d /app/bin/audacity
-      - mv /app/share/mime/packages/audacity.xml /app/share/mime/packages/org.audacityteam.Audacity.xml            
+      - mv /app/share/mime/packages/audacity.xml /app/share/mime/packages/org.audacityteam.Audacity.xml
+    cleanup:
+      - /share/audacity/include
+      - /share/pixmaps
     sources:
       - type: archive
         url: https://github.com/audacity/audacity/archive/Audacity-2.3.2.tar.gz
@@ -151,7 +148,4 @@ modules:
         commands:
           - sed -i '63i <releases><release version="2.3.2" date="2019-05-13"/></releases><content_rating type="oars-1.1"/>'
             help/audacity.appdata.xml
-    cleanup:
-      - /share/audacity/include
-      - /share/pixmaps
 
