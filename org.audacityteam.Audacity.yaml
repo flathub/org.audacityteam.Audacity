@@ -144,9 +144,9 @@ modules:
     sources:
       - type: archive
         url: https://github.com/audacity/audacity/archive/Audacity-2.3.3.tar.gz
-        sha256: 9ab6c8989e21165b86aad80b7e6691015cb5b0c91ab77e6170d7192f840313a8
+        sha256: 404e6c49693dedc94212fc5525974058d848536025e19da31359ae02babe8bd7
       - type: shell
         commands:
-          - sed -i '63i <releases><release version="2.3.3" date="2019-11-22"/></releases><content_rating type="oars-1.1"/>'
+          - sed -i '63i <releases><release version="2.3.3" date="2019-11-28"/></releases><content_rating type="oars-1.1"/>'
             help/audacity.appdata.xml
 
