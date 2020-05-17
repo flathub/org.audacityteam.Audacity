@@ -10,17 +10,29 @@ rename-appdata-file: audacity.appdata.xml
 finish-args:
   - --share=ipc
   - --socket=x11
-  - --socket=wayland
   - --socket=pulseaudio
   - --device=all # ALSA
   - --filesystem=host
   - --env=ALSA_CONFIG_PATH=
+  - --env=LADSPA_PATH=/app/extensions/Plugins/ladspa
+  - --env=LV2_PATH=/app/extensions/Plugins/lv2
+  # Audacity uses VST_PATH
+  - --env=VST_PATH=/app/extensions/Plugins/lxvst
+
 add-extensions:
   org.audacityteam.Audacity.Codecs:
     directory: lib/codecs
     add-ld-path: lib
     bundle: true
     autodelete: true
+  org.freedesktop.LinuxAudio.Plugins:
+    directory: extensions/Plugins
+    version: '20.08'
+    add-ld-path: lib
+    merge-dirs: ladspa;lv2;lxvst
+    subdirectories: true
+    no-autodownload: true
+
 cleanup:
   - /include
   - /lib/pkgconfig
@@ -30,7 +42,7 @@ cleanup:
   - '*.a'
 modules:
 
-  - shared-modules/python2.7/python-2.7.json 
+  - shared-modules/python2.7/python-2.7.json
 
   - name: wxwidgets
     rm-configure: true
@@ -117,10 +129,12 @@ modules:
     builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
+      - -DCMAKE_INSTALL_LIBDIR=/app/lib
     post-install:
       - chrpath -d /app/bin/audacity
       - mv /app/share/mime/packages/{audacity.xml,org.audacityteam.Audacity.xml}
       - install -Dm644 ../help/audacity.appdata.xml -t /app/share/metainfo
+      - install -d /app/extensions/Plugins
     cleanup:
       - /share/audacity/include
       - /share/pixmaps
@@ -129,6 +143,8 @@ modules:
         url: https://github.com/audacity/audacity.git
         commit: 16d52f63a4183bba77ef7305d14622958dc0d1d5
         tag: Audacity-2.4.2
+      - type: patch
+        path: audacity-suil-fix.patch
       - type: shell
         commands:
           - sed -e '42i <release version="2.4.2" date="2020-06-26"/>' -i help/audacity.appdata.xml
