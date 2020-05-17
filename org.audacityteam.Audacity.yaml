@@ -57,7 +57,7 @@ modules:
           - cp -p /usr/share/automake-*/config.{sub,guess} .
           - autoconf -f -B build/autoconf_prepend-include
       - type: git
-        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.4/wxWidgets-3.0.4.tar.bz2
+        url: https://github.com/audacity/wxWidgets.git
         # branch: audacity-fixes-3.1.1
         commit: 191f724631e50b50f94b8ae227752fb07ed7fac3
 
