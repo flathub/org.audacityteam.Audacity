@@ -42,7 +42,6 @@ modules:
       - --disable-webviewwebkit
       - --disable-ribbon
       - --disable-propgrid
-      - --disable-xru
       - --disable-richtext
       - --with-expat=builtin
       - --with-libiconv=/usr
