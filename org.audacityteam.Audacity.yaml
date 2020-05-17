@@ -50,15 +50,9 @@ modules:
       - /lib/wx
       - /share/bakefile
     sources:
-      - type: git
-        url: https://github.com/audacity/wxWidgets.git
-        # branch: audacity-fixes-3.1.1
-        commit: 191f724631e50b50f94b8ae227752fb07ed7fac3
-      - type: script
-        dest-filename: autogen.sh
-        commands:
-          - cp -p /usr/share/automake-*/config.{sub,guess} .
-          - autoconf -f -B build/autoconf_prepend-include
+      - type: archive
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.5.1/wxWidgets-3.0.5.1.tar.bz2
+        sha256: 440f6e73cf5afb2cbf9af10cec8da6cdd3d3998d527598a53db87099524ac807
 
   - name: ffmpeg
     config-opts:
