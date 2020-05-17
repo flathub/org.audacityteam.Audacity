@@ -1,0 +1,47 @@
+diff --git a/cmake-proxies/lv2/CMakeLists.txt b/cmake-proxies/lv2/CMakeLists.txt
+index 289688eb9..f998a0805 100644
+--- a/cmake-proxies/lv2/CMakeLists.txt
++++ b/cmake-proxies/lv2/CMakeLists.txt
+@@ -201,7 +201,7 @@ elseif( UNIX )
+    set( LILV_DEFAULT_LV2_PATH "~/.lv2:/usr/lib/lv2:/usr/local/lib/lv2" )
+ 
+    set( SUIL_MODULE_DIR "" )
+-   set( SUIL_DIR_SEP "" )
++   set( SUIL_DIR_SEP "/" )
+    set( SUIL_GTK2_LIB_NAME "libgtk-x11-2.0.so.0" )
+    set( SUIL_GTK3_LIB_NAME "libgtk-x11-3.0.so.0" )
+    set( SUIL_MODULE_PREFIX "lib" )
+@@ -215,27 +215,27 @@ elseif( UNIX )
+    pkg_check_modules( QT4 IMPORTED_TARGET "QtGui >= 4.4.0" )
+    pkg_check_modules( QT5 IMPORTED_TARGET "Qt5Widgets >= 5.1.0" )
+ 
+-   bld( "suil_x11"
++   bld( "libsuil_x11"
+         "X11"
+         "SUIL_WITH_X11"
+         "${TARGET_ROOT}/suil/src/x11.c" )
+-   bld( "suil_x11_in_gtk2"
++   bld( "libsuil_x11_in_gtk2"
+         "X11;GTK2X11"
+         "SUIL_WITH_X11_IN_GTK2"
+         "${TARGET_ROOT}/suil/src/x11_in_gtk2.c" )
+-   bld( "suil_x11_in_gtk3"
++   bld( "libsuil_x11_in_gtk3"
+         "X11;GTK3X11"
+         "SUIL_WITH_X11_IN_GTK3"
+         "${TARGET_ROOT}/suil/src/x11_in_gtk3.c" )
+-   bld( "suil_qt4_in_gtk2"
++   bld( "libsuil_qt4_in_gtk2"
+         "QT4;GTK2"
+         "SUIL_WITH_QT4_IN_GTK2"
+         "${TARGET_ROOT}/suil/src/qt4_in_gtk2.cpp" )
+-   bld( "suil_qt5_in_gtk2"
++   bld( "libsuil_qt5_in_gtk2"
+         "QT5;GTK2"
+         "SUIL_WITH_QT5_IN_GTK2"
+         "${TARGET_ROOT}/suil/src/qt5_in_gtk.cpp" )
+-   bld( "suil_qt5_in_gtk3"
++   bld( "libsuil_qt5_in_gtk3"
+         "QT5;GTK3"
+         "SUIL_WITH_QT5_IN_GTK3"
+         "${TARGET_ROOT}/suil/src/qt5_in_gtk.cpp" )
