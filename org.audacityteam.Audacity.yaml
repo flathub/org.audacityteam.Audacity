@@ -145,4 +145,5 @@ modules:
         commands:
           - sed -i '63i <releases><release version="2.4.0" date="2020-05-16"/></releases><content_rating type="oars-1.1"/>'
             help/audacity.appdata.xml
-
+      - type: patch
+        path: patches/audacity-Bug2436.patch
