@@ -139,11 +139,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/audacity/audacity.git
-        commit: 00c465db17667deb8e3769c495efca8c71a80da8
-        tag: Audacity-2.4.0
+        commit: 1322b40a9c76409793c68fab761b92f56409840d
+        tag: Audacity-2.4.1
       - type: shell
         commands:
-          - sed -i '63i <releases><release version="2.4.0" date="2020-05-16"/></releases><content_rating type="oars-1.1"/>'
+          - sed -i '63i <releases><release version="2.4.1" date="2020-05-21"/></releases><content_rating type="oars-1.1"/>'
             help/audacity.appdata.xml
-      - type: patch
-        path: patches/audacity-Bug2436.patch
