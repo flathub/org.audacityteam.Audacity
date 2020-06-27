@@ -51,7 +51,7 @@ modules:
       - /lib/wx
       - /share/bakefile
     sources:
-      - type: archive
+      - type: archive # HiDPI is broken in v3.1
         url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.5.1/wxWidgets-3.0.5.1.tar.bz2
         sha256: 440f6e73cf5afb2cbf9af10cec8da6cdd3d3998d527598a53db87099524ac807
 
@@ -81,8 +81,8 @@ modules:
       - /share/ffmpeg/examples
     sources:
       - type: archive
-        url: https://www.ffmpeg.org/releases/ffmpeg-4.2.2.tar.xz
-        sha256: cb754255ab0ee2ea5f66f8850e1bd6ad5cac1cd855d0a2f4990fb8c668b0d29c
+        url: https://www.ffmpeg.org/releases/ffmpeg-4.2.3.tar.xz
+        sha256: 9df6c90aed1337634c1fb026fb01c154c29c82a64ea71291ff2da9aacb9aad31
 
   - name: ffmpeg-codecs
     config-opts:
@@ -101,8 +101,8 @@ modules:
       - /lib/codecs/share
     sources:
       - type: archive
-        url: https://www.ffmpeg.org/releases/ffmpeg-4.2.2.tar.xz
-        sha256: cb754255ab0ee2ea5f66f8850e1bd6ad5cac1cd855d0a2f4990fb8c668b0d29c
+        url: https://www.ffmpeg.org/releases/ffmpeg-4.2.3.tar.xz
+        sha256: 9df6c90aed1337634c1fb026fb01c154c29c82a64ea71291ff2da9aacb9aad31
 
   - name: chrpath
     cleanup:
@@ -120,15 +120,15 @@ modules:
     post-install:
       - chrpath -d /app/bin/audacity
       - mv /app/share/mime/packages/{audacity.xml,org.audacityteam.Audacity.xml}
+      - install -Dm644 ../help/audacity.appdata.xml -t /app/share/metainfo
     cleanup:
       - /share/audacity/include
       - /share/pixmaps
     sources:
       - type: git
         url: https://github.com/audacity/audacity.git
-        commit: 1322b40a9c76409793c68fab761b92f56409840d
-        tag: Audacity-2.4.1
+        commit: 16d52f63a4183bba77ef7305d14622958dc0d1d5
+        tag: Audacity-2.4.2
       - type: shell
         commands:
-          - sed -i '63i <releases><release version="2.4.1" date="2020-05-21"/></releases><content_rating type="oars-1.1"/>'
-            help/audacity.appdata.xml
+          - sed -e '42i <release version="2.4.2" date="2020-06-26"/>' -i help/audacity.appdata.xml
