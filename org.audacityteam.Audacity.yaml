@@ -4,7 +4,7 @@ default-branch: stable
 # the timeline mouse cursor on some systems for unkown reasons
 runtime: org.gnome.Platform
 runtime-version: '3.38'
-sdk: org.freedesktop.Sdk
+sdk: org.gnome.Sdk
 command: audacity
 rename-desktop-file: audacity.desktop
 rename-icon: audacity
