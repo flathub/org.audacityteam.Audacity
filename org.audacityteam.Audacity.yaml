@@ -1,8 +1,10 @@
 app-id: org.audacityteam.Audacity
 default-branch: stable
-runtime: org.freedesktop.Platform
-runtime-version: '20.08'
-sdk: org.freedesktop.Sdk
+# freedesktop-sdk should work too, but causes problems with
+# the timeline mouse cursor on some systems for unkown reasons
+runtime: org.gnome.Platform
+runtime-version: '3.38'
+sdk: org.gnome.Sdk
 command: audacity
 rename-desktop-file: audacity.desktop
 rename-icon: audacity
