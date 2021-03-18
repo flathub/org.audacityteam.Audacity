@@ -143,10 +143,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/audacity/audacity.git
-        commit: 16d52f63a4183bba77ef7305d14622958dc0d1d5
-        tag: Audacity-2.4.2
-      - type: patch
-        path: audacity-suil-fix.patch
+        commit: d5d4c46a3f6ae59e63ec79336def5139dbf04f48
+        tag: Audacity-3.0.0
       - type: shell
         commands:
-          - sed -e '42i <release version="2.4.2" date="2020-06-26"/>' -i help/audacity.appdata.xml
+          - sed -e '42i <release version="3.0.0" date="2021-03-09"/>' -i help/audacity.appdata.xml
