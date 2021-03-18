@@ -44,8 +44,6 @@ cleanup:
   - '*.a'
 modules:
 
-  - shared-modules/python2.7/python-2.7.json
-
   - name: wxwidgets
     rm-configure: true
     config-opts:
@@ -65,9 +63,9 @@ modules:
       - /lib/wx
       - /share/bakefile
     sources:
-      - type: archive # HiDPI is broken in v3.1
-        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.5.1/wxWidgets-3.0.5.1.tar.bz2
-        sha256: 440f6e73cf5afb2cbf9af10cec8da6cdd3d3998d527598a53db87099524ac807
+      - type: archive
+        url: https://github.com/audacity/wxWidgets.git
+        commit: 07e7d832c7a337aedba3537b90b2c98c4d8e2985
 
   - name: ffmpeg
     config-opts:
