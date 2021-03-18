@@ -63,7 +63,7 @@ modules:
       - /lib/wx
       - /share/bakefile
     sources:
-      - type: archive
+      - type: git
         url: https://github.com/audacity/wxWidgets.git
         commit: 07e7d832c7a337aedba3537b90b2c98c4d8e2985
 
