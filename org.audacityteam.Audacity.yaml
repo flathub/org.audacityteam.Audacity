@@ -3,7 +3,7 @@ default-branch: stable
 # freedesktop-sdk should work too, but causes problems with
 # the timeline mouse cursor on some systems for unkown reasons
 runtime: org.gnome.Platform
-runtime-version: '3.38'
+runtime-version: '40'
 sdk: org.gnome.Sdk
 command: audacity
 rename-desktop-file: audacity.desktop
@@ -161,10 +161,10 @@ modules:
     sources:
       - type: git
         url: https://github.com/audacity/audacity.git
-        commit: d5d4c46a3f6ae59e63ec79336def5139dbf04f48
-        tag: Audacity-3.0.0
+        commit: ff5003a9db528c19edd785b288f215d9cae2bf38
+        tag: Audacity-3.0.2
       - type: patch
         path: audacity-suil-fix.patch
       - type: shell
         commands:
-          - sed -e '42i <release version="3.0.0" date="2021-03-17"/>' -i help/audacity.appdata.xml
+          - sed -e '42i <release version="3.0.2" date="2021-04-19"/>' -i help/audacity.appdata.xml
