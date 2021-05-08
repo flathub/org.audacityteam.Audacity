@@ -96,8 +96,12 @@ modules:
       - /share/ffmpeg/examples
     sources:
       - type: archive
-        url: https://www.ffmpeg.org/releases/ffmpeg-4.2.3.tar.xz
-        sha256: 9df6c90aed1337634c1fb026fb01c154c29c82a64ea71291ff2da9aacb9aad31
+        url: https://ffmpeg.org/releases/ffmpeg-4.4.tar.xz
+        sha256: 06b10a183ce5371f915c6bb15b7b1fffbe046e8275099c96affc29e17645d909
+        x-checker-data:
+          type: anitya
+          project-id: 5405
+          url-template: https://ffmpeg.org/releases/ffmpeg-$version.tar.xz
 
   - name: ffmpeg-codecs
     config-opts:
@@ -116,8 +120,12 @@ modules:
       - /lib/codecs/share
     sources:
       - type: archive
-        url: https://www.ffmpeg.org/releases/ffmpeg-4.2.3.tar.xz
-        sha256: 9df6c90aed1337634c1fb026fb01c154c29c82a64ea71291ff2da9aacb9aad31
+        url: https://ffmpeg.org/releases/ffmpeg-4.4.tar.xz
+        sha256: 06b10a183ce5371f915c6bb15b7b1fffbe046e8275099c96affc29e17645d909
+        x-checker-data:
+          type: anitya
+          project-id: 5405
+          url-template: https://ffmpeg.org/releases/ffmpeg-$version.tar.xz
 
   - name: sqlite
     # version bundled with runtime is missing the SQLITE_DBPAGE virtual table
@@ -133,8 +141,8 @@ modules:
       - --enable-fts5
     sources:
       - type: archive
-        url: https://www.sqlite.org/2020/sqlite-autoconf-3340000.tar.gz
-        sha256: bf6db7fae37d51754737747aaaf413b4d6b3b5fbacd52bdb2d0d6e5b2edd9aee
+        url: https://www.sqlite.org/2021/sqlite-autoconf-3350500.tar.gz
+        sha256: f52b72a5c319c3e516ed7a92e123139a6e87af08a2dc43d7757724f6132e6db0
 
   - name: chrpath
     cleanup:
@@ -143,6 +151,10 @@ modules:
       - type: archive
         url: https://alioth-archive.debian.org/releases/chrpath/chrpath/0.16/chrpath-0.16.tar.gz
         sha256: bb0d4c54bac2990e1bdf8132f2c9477ae752859d523e141e72b3b11a12c26e7b
+        x-checker-data:
+          type: anitya
+          project-id: 13891
+          url-template: https://alioth-archive.debian.org/releases/chrpath/chrpath/$version/chrpath-$version.tar.gz
 
   - name: audacity
     buildsystem: cmake-ninja
@@ -163,6 +175,9 @@ modules:
         url: https://github.com/audacity/audacity.git
         commit: ff5003a9db528c19edd785b288f215d9cae2bf38
         tag: Audacity-3.0.2
+        x-checker-data:
+          type: git
+          tag-pattern: "^Audacity-([\\d.]+)$"
       - type: patch
         path: audacity-suil-fix.patch
       - type: shell
