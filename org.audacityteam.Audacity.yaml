@@ -28,6 +28,11 @@ add-extensions:
     add-ld-path: lib
     bundle: true
     autodelete: true
+  org.audacityteam.Audacity.Manual:
+    directory: share/audacity/help/manual
+    bundle: true
+    no-autodownload: true
+    autodelete: true
   org.freedesktop.LinuxAudio.Plugins:
     directory: extensions/Plugins
     version: '20.08'
@@ -168,3 +173,13 @@ modules:
       - type: shell
         commands:
           - sed -e '42i <release version="3.0.2" date="2021-04-19"/>' -i help/audacity.appdata.xml
+
+  - name: audacity-manual
+    buildsystem: simple
+    build-commands:
+      - install -d ${FLATPAK_DEST}/share/audacity/help
+      - cp -R manual ${FLATPAK_DEST}/share/audacity/help/
+    sources:
+      - type: git
+        url: https://github.com/audacity/audacity-manual.git
+        commit: 9f60d6ba15dc621f3e57a877f2be629234c2f128
