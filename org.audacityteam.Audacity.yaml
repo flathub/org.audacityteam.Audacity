@@ -16,6 +16,7 @@ finish-args:
   - --socket=pulseaudio
   - --device=all # ALSA
   - --filesystem=host
+  - --env=LD_LIBRARY_PATH=/app/lib/audacity
   - --env=ALSA_CONFIG_PATH=
   - --env=LADSPA_PATH=/app/extensions/Plugins/ladspa
   - --env=LV2_PATH=/app/extensions/Plugins/lv2
@@ -44,6 +45,7 @@ cleanup:
   - '*.la'
   - '*.a'
 modules:
+  - deps/python3-conan.json
 
   - name: wxwidgets
     rm-configure: true
@@ -68,7 +70,11 @@ modules:
       - type: git # they want their fork
         url: https://github.com/audacity/wxWidgets
         # branch: audacity-fixes-3.1.3
-        commit: 07e7d832c7a337aedba3537b90b2c98c4d8e2985
+        tag: v3.1.3.1-audacity
+        commit: e42d7f73652cf7e40058a48177a86e0f864ec464
+
+  - shared-modules/lame/lame-3.99.5.json
+  - deps/libid3tag/libid3tag.json
 
   - name: ffmpeg
     config-opts:
@@ -144,12 +150,35 @@ modules:
         url: https://alioth-archive.debian.org/releases/chrpath/chrpath/0.16/chrpath-0.16.tar.gz
         sha256: bb0d4c54bac2990e1bdf8132f2c9477ae752859d523e141e72b3b11a12c26e7b
 
+  - shared-modules/libmad/libmad.json
+  - shared-modules/linux-audio/lv2.json
+  - shared-modules/linux-audio/lilv.json
+  - deps/suil.json
+
   - name: audacity
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_INSTALL_LIBDIR=/app/lib
+      - -Dgtk=gtk+-3.0
+      - -Dglib=glib-2.0
+      - -DwxWidgets_INCLUDE_DIRS=/app/include/wx-3.1;/app/lib/wx/include/gtk3-unicode-3.1
+      - -DwxWidgets_CXX_FLAGS=-pthread
+      - -DwxWidgets_DEFINITIONS_GENERAL=WXUSINGDLL;__WXGTK__;_FILE_OFFSET_BITS=64
+      - -DwxWidgets_LIBRARIES=-lwx_gtk3u_xrc-3.1;-lwx_gtk3u_html-3.1;-lwx_gtk3u_qa-3.1;-lwx_gtk3u_core-3.1;-lwx_baseu_xml-3.1;-lwx_baseu_net-3.1;-lwx_baseu-3.1
+      - -Daudacity_lib_preference=system
+      - -Daudacity_obey_system_dependencies=On
+      - -Daudacity_use_wxwidgets=system
+      - -Daudacity_use_soxr=local
+      - -Daudacity_use_portaudio=local
+      - -Daudacity_use_vamp=local
+      - -Daudacity_use_midi=local
+      - -Daudacity_use_portsmf=local
+      - -Daudacity_use_sbsms=local
+      - -Daudacity_use_soundtouch=local
+      - -Daudacity_use_twolame=local
+      - -Daudacity_has_networking=no
     post-install:
       - chrpath -d /app/bin/audacity
       - mv /app/share/mime/packages/{audacity.xml,org.audacityteam.Audacity.xml}
@@ -161,10 +190,17 @@ modules:
     sources:
       - type: git
         url: https://github.com/audacity/audacity.git
-        commit: ff5003a9db528c19edd785b288f215d9cae2bf38
-        tag: Audacity-3.0.2
+        commit: 84d5e63dbc0f23da75202bb434f04654984d2081
+        tag: Audacity-3.0.3-RC2
       - type: patch
-        path: audacity-suil-fix.patch
+        path: patches/audacity-suil-fix.patch
+        # This patch to remove two dependencies that are not needed and trigger conan.
+      - type: patch
+        path: patches/audacity-build-noconan.patch
+        # lame doesn't come with a .pc file.
+      - type: file
+        path: deps/lame.pc
       - type: shell
         commands:
-          - sed -e '42i <release version="3.0.2" date="2021-04-19"/>' -i help/audacity.appdata.xml
+          - install lame.pc $FLATPAK_DEST/lib/pkgconfig
+          - sed -e '41i <release version="3.0.3-RC2" date="2021-06-30"/>' -i help/audacity.appdata.xml
