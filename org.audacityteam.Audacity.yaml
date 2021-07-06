@@ -22,6 +22,10 @@ finish-args:
   - --env=LV2_PATH=/app/extensions/Plugins/lv2
   # Audacity uses VST_PATH
   - --env=VST_PATH=/app/extensions/Plugins/lxvst
+  # JACK support via pipewire
+  - --filesystem=xdg-run/pipewire-0
+  - --system-talk-name=org.freedesktop.RealtimeKit1
+
 
 add-extensions:
   org.audacityteam.Audacity.Codecs:
@@ -151,6 +155,7 @@ modules:
         sha256: bb0d4c54bac2990e1bdf8132f2c9477ae752859d523e141e72b3b11a12c26e7b
 
   - shared-modules/libmad/libmad.json
+  - shared-modules/linux-audio/jack2.json
   - shared-modules/linux-audio/lv2.json
   - shared-modules/linux-audio/lilv.json
   - deps/suil.json
@@ -173,6 +178,7 @@ modules:
       - -Daudacity_use_soxr=local
       - -Daudacity_use_portaudio=local
       - -Daudacity_use_vamp=local
+      - -Dauadcity_use_pa_jack=linked
       - -Daudacity_use_midi=local
       - -Daudacity_use_portsmf=local
       - -Daudacity_use_sbsms=local
