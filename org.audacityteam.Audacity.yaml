@@ -16,6 +16,8 @@ finish-args:
   - --socket=pulseaudio
   - --device=all # ALSA
   - --filesystem=host
+  # mod-script-pipe provides named pipes in /tmp
+  - --filesystem=/tmp
   - --env=ALSA_CONFIG_PATH=
   - --env=LADSPA_PATH=/app/extensions/Plugins/ladspa
   - --env=LV2_PATH=/app/extensions/Plugins/lv2
