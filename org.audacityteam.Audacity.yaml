@@ -1,5 +1,4 @@
 app-id: org.audacityteam.Audacity
-default-branch: stable
 # freedesktop-sdk should work too, but causes problems with
 # the timeline mouse cursor on some systems for unkown reasons
 runtime: org.gnome.Platform
@@ -196,8 +195,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/audacity/audacity.git
-        commit: 333b14a1fd8dc7681dc4e8aa88f87d2512f27991
-        tag: Audacity-3.0.3-RC3
+        commit: 969e83bd6660c48e6a6f584b7b76ca2438a87de4
+        tag: Audacity-3.0.3
       - type: patch
         path: patches/audacity-suil-fix.patch
         # This patch to remove two dependencies that are not needed and trigger conan.
@@ -205,4 +204,4 @@ modules:
         path: patches/audacity-build-noconan.patch
       - type: shell
         commands:
-          - sed -e '41i <release version="3.0.3-RC3" date="2021-07-22"/>' -i help/audacity.appdata.xml
+          - sed -e '41i <release version="3.0.3" date="2021-07-26"/>' -i help/audacity.appdata.xml
