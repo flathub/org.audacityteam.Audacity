@@ -177,7 +177,7 @@ modules:
       - -Daudacity_use_soxr=local
       - -Daudacity_use_portaudio=local
       - -Daudacity_use_vamp=local
-      - -Dauadcity_use_pa_jack=linked
+      - -Daudacity_use_pa_jack=linked
       - -Daudacity_use_midi=local
       - -Daudacity_use_portsmf=local
       - -Daudacity_use_sbsms=local
