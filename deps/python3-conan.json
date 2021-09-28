@@ -105,8 +105,8 @@
         },
         {
             "type": "file",
-            "url": "https://files.pythonhosted.org/packages/76/d9/bbbafc76b18da706451fa91bc2ebe21c0daf8868ef3c30b869ac7cb7f01d/urllib3-1.25.11.tar.gz",
-            "sha256": "8d7eaa5a82a1cac232164990f04874c594c9453ec55eef02eab885aa02fc17a2"
+            "url": "https://files.pythonhosted.org/packages/80/be/3ee43b6c5757cabea19e75b8f46eaf05a2f5144107d7db48c7cf3a864f73/urllib3-1.26.7.tar.gz",
+            "sha256": "4987c65554f7a2dbf30c18fd48778ef124af6fab771a377103da0585e2336ece"
         },
         {
             "type": "file",
@@ -120,8 +120,8 @@
         },
         {
             "type": "file",
-            "url": "https://files.pythonhosted.org/packages/e8/7e/d32fab194fd6d897e7479d0b4294b8214615f167677d319d45a64765a162/conan-1.38.0.tar.gz",
-            "sha256": "4a30cad1b1edc4f8758c81f8259a9dbc1e6b7123940240ff6c72c84277f020e3"
+            "url": "https://files.pythonhosted.org/packages/f6/62/0a978b762933b6c15db8b4f9c0e2d748f24d104084d22a940eef88500dc3/conan-1.40.2.tar.gz",
+            "sha256": "2dde4e484261f588167a2789874d26f518f13dab3217062d5cecd89f106cd181"
         }
     ]
 }
