@@ -196,8 +196,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/audacity/audacity.git
-        commit: 076c694154106b90085e46d76c03ee7ef542683d
-        tag: Audacity-3.0.4
+        commit: e0431d1b0ac8bc94a9be0c65dfae01f717476fe7
+        tag: Audacity-3.0.5
       - type: patch
         path: patches/audacity-suil-fix.patch
         # This patch to remove two dependencies that are not needed and trigger conan.
@@ -205,4 +205,4 @@ modules:
         path: patches/audacity-build-noconan.patch
       - type: shell
         commands:
-          - sed -e '41i <release version="3.0.4" date="2021-08-24"/>' -i help/audacity.appdata.xml
+          - sed -e '41i <release version="3.0.5" date="2021-09-29"/>' -i help/audacity.appdata.xml
