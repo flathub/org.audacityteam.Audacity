@@ -202,6 +202,7 @@ modules:
       - -Daudacity_use_nyquist=On
       - -Daudacity_use_twolame=local
       - -Daudacity_has_networking=no
+      - -Daudacity_has_updates_check=NO
       - -Daudacity_conan_enabled=Off
     post-install:
       - chrpath -d /app/bin/audacity
