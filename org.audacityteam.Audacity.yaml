@@ -5,6 +5,7 @@ runtime: org.gnome.Platform
 runtime-version: '41'
 sdk: org.gnome.Sdk
 command: audacity
+desktop-file-name-prefix: '(Beta) '
 rename-desktop-file: audacity.desktop
 rename-icon: audacity
 rename-appdata-file: audacity.appdata.xml
@@ -50,8 +51,6 @@ cleanup:
   - '*.la'
   - '*.a'
 modules:
-  - deps/python3-conan.json
-
   - name: wxwidgets
     rm-configure: true
     config-opts:
@@ -157,6 +156,21 @@ modules:
 
   - shared-modules/libmad/libmad.json
   - shared-modules/linux-audio/jack2.json
+  - name: portaudio
+    buildsystem: cmake-ninja
+    sources:
+      - type: archive
+        url: https://github.com/PortAudio/portaudio/archive/refs/tags/v19.7.0.tar.gz
+        sha256: 5af29ba58bbdbb7bbcefaaecc77ec8fc413f0db6f4c4e286c40c3e1b83174fa0
+  - name: portmidi
+    buildsystem: cmake-ninja
+    sources:
+      - type: archive
+        url: https://github.com/mixxxdj/portmidi/archive/refs/tags/236.tar.gz
+        sha256: 5db9bcb78c728eb81218e905faa5f02eab1f851b3ae5e5b13312755b9b0db943
+    cleanup:
+      - /bin
+
   - shared-modules/linux-audio/lv2.json
   - shared-modules/linux-audio/lilv.json
   - deps/suil.json
@@ -167,7 +181,7 @@ modules:
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_INSTALL_LIBDIR=/app/lib
-      - -DAUDACITY_BUILD_LEVEL=2
+      - -DAUDACITY_BUILD_LEVEL=1
       - -Dgtk=gtk+-3.0
       - -Dglib=glib-2.0
       - -DwxWidgets_INCLUDE_DIRS=/app/include/wx-3.1;/app/lib/wx/include/gtk3-unicode-3.1
@@ -178,15 +192,18 @@ modules:
       - -Daudacity_obey_system_dependencies=On
       - -Daudacity_use_wxwidgets=system
       - -Daudacity_use_soxr=local
-      - -Daudacity_use_portaudio=local
+      - -Daudacity_use_portaudio=system
       - -Daudacity_use_vamp=local
-      - -Daudacity_use_pa_jack=linked
-      - -Daudacity_use_midi=local
+      - -Daudacity_use_midi=system
       - -Daudacity_use_portsmf=local
       - -Daudacity_use_sbsms=local
       - -Daudacity_use_soundtouch=local
+      - -Daudacity_use_portmixer=On
+      - -Daudacity_use_nyquist=On
       - -Daudacity_use_twolame=local
       - -Daudacity_has_networking=no
+      - -Daudacity_has_updates_check=NO
+      - -Daudacity_conan_enabled=Off
     post-install:
       - chrpath -d /app/bin/audacity
       - mv /app/share/mime/packages/{audacity.xml,org.audacityteam.Audacity.xml}
@@ -198,13 +215,10 @@ modules:
     sources:
       - type: git
         url: https://github.com/audacity/audacity.git
-        commit: e0431d1b0ac8bc94a9be0c65dfae01f717476fe7
-        tag: Audacity-3.0.5
+        commit: 2379e463c771bfed15ddefa2eaf7315918da88c9
+        tag: Audacity-3.1.0
       - type: patch
         path: patches/audacity-suil-fix.patch
-        # This patch to remove two dependencies that are not needed and trigger conan.
-      - type: patch
-        path: patches/audacity-build-noconan.patch
       - type: shell
         commands:
-          - sed -e '41i <release version="3.0.5" date="2021-09-29"/>' -i help/audacity.appdata.xml
+          - sed -e '41i <release version="3.1.0" date="2021-10-28"/>' -i help/audacity.appdata.xml
