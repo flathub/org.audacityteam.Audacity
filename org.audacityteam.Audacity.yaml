@@ -181,7 +181,7 @@ modules:
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_INSTALL_LIBDIR=/app/lib
-      - -DAUDACITY_BUILD_LEVEL=1
+      - -DAUDACITY_BUILD_LEVEL=2
       - -Dgtk=gtk+-3.0
       - -Dglib=glib-2.0
       - -DwxWidgets_INCLUDE_DIRS=/app/include/wx-3.1;/app/lib/wx/include/gtk3-unicode-3.1
