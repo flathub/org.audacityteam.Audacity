@@ -5,7 +5,6 @@ runtime: org.gnome.Platform
 runtime-version: '41'
 sdk: org.gnome.Sdk
 command: audacity
-desktop-file-name-prefix: '(Beta) '
 rename-desktop-file: audacity.desktop
 rename-icon: audacity
 rename-appdata-file: audacity.appdata.xml
