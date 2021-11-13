@@ -20,7 +20,7 @@ finish-args:
   - --env=LD_LIBRARY_PATH=/app/lib/audacity
   - --env=ALSA_CONFIG_PATH=
   - --env=LADSPA_PATH=/app/extensions/Plugins/ladspa
-  - --env=LV2_PATH=/app/extensions/Plugins/lv2
+  - --env=LV2_PATH=$HOME/.lv2:/app/extensions/Plugins/lv2
   # Audacity uses VST_PATH
   - --env=VST_PATH=/app/extensions/Plugins/lxvst
   # JACK support via pipewire
@@ -214,10 +214,10 @@ modules:
     sources:
       - type: git
         url: https://github.com/audacity/audacity.git
-        commit: 2379e463c771bfed15ddefa2eaf7315918da88c9
-        tag: Audacity-3.1.0
+        commit: 58c416e469bf5c0c15bf4f7d043d8609974d02bf
+        tag: Audacity-3.1.1
       - type: patch
         path: patches/audacity-suil-fix.patch
       - type: shell
         commands:
-          - sed -e '41i <release version="3.1.0" date="2021-10-28"/>' -i help/audacity.appdata.xml
+          - sed -e '41i <release version="3.1.1" date="2021-11-11"/>' -i help/audacity.appdata.xml
