@@ -157,12 +157,16 @@ modules:
   - shared-modules/linux-audio/jack2.json
   - name: portaudio
     buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
         url: https://github.com/PortAudio/portaudio/archive/refs/tags/v19.7.0.tar.gz
         sha256: 5af29ba58bbdbb7bbcefaaecc77ec8fc413f0db6f4c4e286c40c3e1b83174fa0
   - name: portmidi
     buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
         url: https://github.com/mixxxdj/portmidi/archive/refs/tags/236.tar.gz
@@ -178,7 +182,7 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
-      - -DCMAKE_BUILD_TYPE=Release
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DCMAKE_INSTALL_LIBDIR=/app/lib
       - -DAUDACITY_BUILD_LEVEL=2
       - -Dgtk=gtk+-3.0
@@ -208,16 +212,17 @@ modules:
       - mv /app/share/mime/packages/{audacity.xml,org.audacityteam.Audacity.xml}
       - install -Dm644 ../help/audacity.appdata.xml -t /app/share/metainfo
       - install -d /app/extensions/Plugins
+      - desktop-file-edit --set-key=Exec --set-value="audacity %F" /app/share/applications/audacity.desktop
     cleanup:
       - /share/audacity/include
       - /share/pixmaps
     sources:
       - type: git
         url: https://github.com/audacity/audacity.git
-        commit: 58c416e469bf5c0c15bf4f7d043d8609974d02bf
-        tag: Audacity-3.1.1
+        commit: 090ba8654f03b324d1f3073985dd7e9fbc21dfe5
+        tag: Audacity-3.1.2
       - type: patch
         path: patches/audacity-suil-fix.patch
       - type: shell
         commands:
-          - sed -e '41i <release version="3.1.1" date="2021-11-11"/>' -i help/audacity.appdata.xml
+          - sed -e '41i <release version="3.1.2" date="2021-11-16"/>' -i help/audacity.appdata.xml
