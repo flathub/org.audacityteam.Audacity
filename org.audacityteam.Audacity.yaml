@@ -220,6 +220,8 @@ modules:
         tag: Audacity-3.1.3
       - type: patch
         path: patches/audacity-suil-fix.patch
+      - type: patch
+        path: patches/add-wm-class.patch
       - type: shell
         commands:
           - sed -e '41i <release version="3.1.3" date="2021-12-23"/>' -i help/audacity.appdata.xml
