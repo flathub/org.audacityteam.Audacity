@@ -1,0 +1,24 @@
+From 72b6d71ffade76dc87a8307083ed6009ca507ccf Mon Sep 17 00:00:00 2001
+From: Stan Janssen <stan@finetuned.nl>
+Date: Wed, 15 Dec 2021 09:01:27 +0100
+Subject: [PATCH] Add StartupWMClass to .desktop file
+
+---
+ src/audacity.desktop.in | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/audacity.desktop.in b/src/audacity.desktop.in
+index 5feb41277..0762c141b 100644
+--- a/src/audacity.desktop.in
++++ b/src/audacity.desktop.in
+@@ -46,6 +46,7 @@ Comment[zh_CN]=录音和编辑音频文件
+ Comment[zh_TW]=錄音和編輯音訊檔案
+ 
+ Icon=@AUDACITY_NAME@
++StartupWMClass=Audacity
+ 
+ Type=Application
+ Categories=AudioVideo;Audio;AudioVideoEditing;
+-- 
+2.25.1
+
