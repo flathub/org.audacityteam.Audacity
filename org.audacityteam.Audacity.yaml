@@ -102,8 +102,12 @@ modules:
       - /share/ffmpeg/examples
     sources:
       - type: archive
-        url: https://www.ffmpeg.org/releases/ffmpeg-4.2.3.tar.xz
-        sha256: 9df6c90aed1337634c1fb026fb01c154c29c82a64ea71291ff2da9aacb9aad31
+        url: https://ffmpeg.org/releases/ffmpeg-4.4.1.tar.xz
+        sha256: eadbad9e9ab30b25f5520fbfde99fae4a92a1ae3c0257a8d68569a4651e30e02
+        x-checker-data:
+          type: anitya
+          project-id: 5405
+          url-template: https://ffmpeg.org/releases/ffmpeg-$version.tar.xz
 
   - name: ffmpeg-codecs
     config-opts:
@@ -122,8 +126,12 @@ modules:
       - /lib/codecs/share
     sources:
       - type: archive
-        url: https://www.ffmpeg.org/releases/ffmpeg-4.2.3.tar.xz
-        sha256: 9df6c90aed1337634c1fb026fb01c154c29c82a64ea71291ff2da9aacb9aad31
+        url: https://ffmpeg.org/releases/ffmpeg-4.4.1.tar.xz
+        sha256: eadbad9e9ab30b25f5520fbfde99fae4a92a1ae3c0257a8d68569a4651e30e02
+        x-checker-data:
+          type: anitya
+          project-id: 5405
+          url-template: https://ffmpeg.org/releases/ffmpeg-$version.tar.xz
 
   - name: sqlite
     # version bundled with runtime is missing the SQLITE_DBPAGE virtual table
@@ -218,6 +226,9 @@ modules:
         url: https://github.com/audacity/audacity.git
         commit: ff6d6739fbe73de9c9ad3aa4e07642653604af44
         tag: Audacity-3.1.3
+        x-checker-data:
+          type: git
+          tag-pattern: "^Audacity-([\\d.]+)$"
       - type: patch
         path: patches/audacity-suil-fix.patch
       - type: patch
