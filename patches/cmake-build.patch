@@ -1,0 +1,12 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 0962c40..1171f97 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -409,7 +409,6 @@ if( ${_OPT}has_vst3 AND CMAKE_CXX_COMPILER_ID MATCHES "GNU" )
+    #VST3 module_linux.cpp uses c++ fs features
+    #Once compiler minimum version is upgraded to 9.1+
+    #we don't need this option any more
+-   list( APPEND CMAKE_REQUIRED_LIBRARIES -lstdc++fs )
+ endif()
+ 
+ # Add the math library (if found) to the list of required libraries

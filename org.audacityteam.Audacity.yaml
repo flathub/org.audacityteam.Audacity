@@ -22,11 +22,10 @@ finish-args:
   - --env=LADSPA_PATH=/app/extensions/Plugins/ladspa
   - --env=LV2_PATH=$HOME/.lv2:/app/extensions/Plugins/lv2
   # Audacity uses VST_PATH
-  - --env=VST_PATH=/app/extensions/Plugins/lxvst
+  - --env=VST_PATH=/app/extensions/Plugins/vst
+  - --env=VST3_PATH=/app/extensions/Plugins/vst3
   # JACK support via pipewire
   - --filesystem=xdg-run/pipewire-0
-  - --system-talk-name=org.freedesktop.RealtimeKit1
-
 
 add-extensions:
   org.audacityteam.Audacity.Codecs:
@@ -38,7 +37,7 @@ add-extensions:
     directory: extensions/Plugins
     version: '21.08'
     add-ld-path: lib
-    merge-dirs: ladspa;lv2;lxvst
+    merge-dirs: ladspa;lv2;vst;vst3
     subdirectories: true
     no-autodownload: true
 
@@ -211,6 +210,8 @@ modules:
       - -Daudacity_use_twolame=local
       - -Daudacity_has_networking=no
       - -Daudacity_has_updates_check=NO
+      # currently disabled because Conan.
+      - -Daudacity_has_vst3=Off
       - -Daudacity_conan_enabled=Off
     post-install:
       - chrpath -d /app/bin/audacity
@@ -224,15 +225,15 @@ modules:
     sources:
       - type: git
         url: https://github.com/audacity/audacity.git
-        commit: ff6d6739fbe73de9c9ad3aa4e07642653604af44
-        tag: Audacity-3.1.3
+        commit: b96ad830eda3c6f5764ad05fad01ef8f8baa8c8f
+        tag: Audacity-3.2.0-alpha-1
         x-checker-data:
           type: git
           tag-pattern: "^Audacity-([\\d.]+)$"
       - type: patch
         path: patches/audacity-suil-fix.patch
       - type: patch
-        path: patches/add-wm-class.patch
+        path: patches/cmake-build.patch
       - type: shell
         commands:
-          - sed -e '41i <release version="3.1.3" date="2021-12-23"/>' -i help/audacity.appdata.xml
+          - sed -e '41i <release version="3.2.0-alpha-1" date="2022-08-29"/>' -i help/audacity.appdata.xml
