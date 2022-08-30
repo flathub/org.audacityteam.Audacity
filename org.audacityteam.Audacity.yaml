@@ -101,8 +101,8 @@ modules:
       - /share/ffmpeg/examples
     sources:
       - type: archive
-        url: https://ffmpeg.org/releases/ffmpeg-4.4.1.tar.xz
-        sha256: eadbad9e9ab30b25f5520fbfde99fae4a92a1ae3c0257a8d68569a4651e30e02
+        url: https://ffmpeg.org/releases/ffmpeg-5.1.tar.xz
+        sha256: 55eb6aab5ee235550fa54a33eaf8bf1b4ec66c01453182b12f6a993d75698b03
         x-checker-data:
           type: anitya
           project-id: 5405
@@ -125,8 +125,8 @@ modules:
       - /lib/codecs/share
     sources:
       - type: archive
-        url: https://ffmpeg.org/releases/ffmpeg-4.4.1.tar.xz
-        sha256: eadbad9e9ab30b25f5520fbfde99fae4a92a1ae3c0257a8d68569a4651e30e02
+        url: https://ffmpeg.org/releases/ffmpeg-5.1.tar.xz
+        sha256: 55eb6aab5ee235550fa54a33eaf8bf1b4ec66c01453182b12f6a993d75698b03
         x-checker-data:
           type: anitya
           project-id: 5405
@@ -229,7 +229,7 @@ modules:
         tag: Audacity-3.2.0-alpha-1
         x-checker-data:
           type: git
-          tag-pattern: "^Audacity-([\\d.]+)$"
+          tag-pattern: ^Audacity-([\d.]+)$
       - type: patch
         path: patches/audacity-suil-fix.patch
       - type: patch
