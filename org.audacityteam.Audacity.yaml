@@ -225,8 +225,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/audacity/audacity.git
-        commit: b96ad830eda3c6f5764ad05fad01ef8f8baa8c8f
-        tag: Audacity-3.2.0-alpha-1
+        commit: ccee770a1b5cb8d06eb7f3bb6480eaa2c03ac405
+        tag: Audacity-3.2.0-beta
         x-checker-data:
           type: git
           tag-pattern: ^Audacity-([\d.]+)$
@@ -236,4 +236,4 @@ modules:
         path: patches/cmake-build.patch
       - type: shell
         commands:
-          - sed -e '41i <release version="3.2.0-alpha-1" date="2022-08-29"/>' -i help/audacity.appdata.xml
+          - sed -e '41i <release version="3.2.0-beta" date="2022-09-13"/>' -i help/audacity.appdata.xml
