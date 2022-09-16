@@ -236,4 +236,4 @@ modules:
         path: patches/cmake-build.patch
       - type: shell
         commands:
-          - sed -e '41i <release version="3.2.0-beta" date="2022-09-13"/>' -i help/audacity.appdata.xml
+          - sed -e '42i <release version="3.2.0-beta" date="2022-09-13"/>' -i help/audacity.appdata.xml
