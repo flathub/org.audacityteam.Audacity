@@ -2,7 +2,7 @@ app-id: org.audacityteam.Audacity
 # freedesktop-sdk should work too, but causes problems with
 # the timeline mouse cursor on some systems for unkown reasons
 runtime: org.gnome.Platform
-runtime-version: '42'
+runtime-version: '43'
 sdk: org.gnome.Sdk
 command: audacity
 rename-desktop-file: audacity.desktop
@@ -35,7 +35,7 @@ add-extensions:
     autodelete: true
   org.freedesktop.LinuxAudio.Plugins:
     directory: extensions/Plugins
-    version: '21.08'
+    version: '22.08'
     add-ld-path: lib
     merge-dirs: ladspa;lv2;vst;vst3
     subdirectories: true
@@ -158,7 +158,6 @@ modules:
         sha256: bb0d4c54bac2990e1bdf8132f2c9477ae752859d523e141e72b3b11a12c26e7b
 
   - shared-modules/libmad/libmad.json
-  - shared-modules/linux-audio/jack2.json
   - name: portaudio
     buildsystem: cmake-ninja
     config-opts:
