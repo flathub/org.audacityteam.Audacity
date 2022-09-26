@@ -209,8 +209,8 @@ modules:
       - -Daudacity_use_twolame=local
       - -Daudacity_has_networking=no
       - -Daudacity_has_updates_check=NO
-      # currently disabled because Conan.
-      - -Daudacity_has_vst3=Off
+      - -Daudacity_has_vst3=On
+      - -Daudacity_use_vst3sdk=system
       - -Daudacity_conan_enabled=Off
     post-install:
       - chrpath -d /app/bin/audacity
@@ -230,9 +230,28 @@ modules:
           type: git
           tag-pattern: ^Audacity-([\d.]+)$
       - type: patch
-        path: patches/audacity-suil-fix.patch
+        paths:
+          - patches/audacity-suil-fix.patch
+          - patches/audacity-cmake-build.patch
+          - patches/audacity-vst3-g++.patch
+      - type: git
+        dest: vst3sdk
+        url: https://github.com/steinbergmedia/vst3sdk.git
+        tag: v3.7.3_build_20
+        commit: 2cc517019a2681fccf211e6a95776a0af1e16d04
       - type: patch
-        path: patches/cmake-build.patch
+        options:
+          - -d
+          - vst3sdk
+        paths:
+          - patches/vst3sdk.patch
+          - patches/vst3sdk-gcc11.patch
+          - patches/vst3sdk-buildfix.patch
+      - type: patch
+        options:
+          - -d
+          - vst3sdk/public.sdk
+        path: patches/vst3sdk-public-c++.patch
       - type: shell
         commands:
           - sed -e '42i <release version="3.2.0" date="2022-09-22"/>' -i help/audacity.appdata.xml

@@ -1,0 +1,22 @@
+diff --git a/pluginterfaces/base/funknown.cpp b/pluginterfaces/base/funknown.cpp
+index 23ca64e6..a7c24c60 100644
+--- a/pluginterfaces/base/funknown.cpp
++++ b/pluginterfaces/base/funknown.cpp
+@@ -59,6 +59,8 @@
+ #include <stdatomic.h>
+ #endif
+ 
++#include <atomic>
++
+ namespace Steinberg {
+ 
+ //------------------------------------------------------------------------
+@@ -88,7 +90,7 @@ namespace FUnknownPrivate {
+ int32 PLUGIN_API atomicAdd (int32& var, int32 d)
+ {
+ #if SMTG_USE_STDATOMIC_H
+-	return atomic_fetch_add (reinterpret_cast<atomic_int_least32_t*> (&var), d) + d;
++	return atomic_fetch_add (reinterpret_cast<std::atomic_int_least32_t*> (&var), d) + d;
+ #else
+ #if SMTG_OS_WINDOWS
+ #ifdef __MINGW32__
