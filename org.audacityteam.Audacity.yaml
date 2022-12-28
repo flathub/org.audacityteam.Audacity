@@ -254,4 +254,4 @@ modules:
         path: patches/vst3sdk-public-c++.patch
       - type: shell
         commands:
-          - sed -e '42i <release version="3.2.2" date="2022-12-06"/>' -i help/audacity.appdata.xml
+          - sed -e '42i <release version="3.2.3" date="2022-12-27"/>' -i help/audacity.appdata.xml
