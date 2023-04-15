@@ -2,7 +2,7 @@ app-id: org.audacityteam.Audacity
 # freedesktop-sdk should work too, but causes problems with
 # the timeline mouse cursor on some systems for unkown reasons
 runtime: org.gnome.Platform
-runtime-version: '42'
+runtime-version: '43'
 sdk: org.gnome.Sdk
 command: audacity
 rename-desktop-file: audacity.desktop
@@ -35,7 +35,7 @@ add-extensions:
     autodelete: true
   org.freedesktop.LinuxAudio.Plugins:
     directory: extensions/Plugins
-    version: '21.08'
+    version: '22.08'
     add-ld-path: lib
     merge-dirs: ladspa;lv2;vst;vst3
     subdirectories: true
@@ -101,8 +101,8 @@ modules:
       - /share/ffmpeg/examples
     sources:
       - type: archive
-        url: https://ffmpeg.org/releases/ffmpeg-5.1.1.tar.xz
-        sha256: 95bf3ff8c496511e71e958fb249e663c8c9c3de583c5bebc0f5a9745abbc0435
+        url: https://ffmpeg.org/releases/ffmpeg-6.0.tar.xz
+        sha256: 57be87c22d9b49c112b6d24bc67d42508660e6b718b3db89c44e47e289137082
         x-checker-data:
           type: anitya
           project-id: 5405
@@ -125,8 +125,8 @@ modules:
       - /lib/codecs/share
     sources:
       - type: archive
-        url: https://ffmpeg.org/releases/ffmpeg-5.1.1.tar.xz
-        sha256: 95bf3ff8c496511e71e958fb249e663c8c9c3de583c5bebc0f5a9745abbc0435
+        url: https://ffmpeg.org/releases/ffmpeg-6.0.tar.xz
+        sha256: 57be87c22d9b49c112b6d24bc67d42508660e6b718b3db89c44e47e289137082
         x-checker-data:
           type: anitya
           project-id: 5405
@@ -158,7 +158,6 @@ modules:
         sha256: bb0d4c54bac2990e1bdf8132f2c9477ae752859d523e141e72b3b11a12c26e7b
 
   - shared-modules/libmad/libmad.json
-  - shared-modules/linux-audio/jack2.json
   - name: portaudio
     buildsystem: cmake-ninja
     config-opts:
@@ -210,8 +209,8 @@ modules:
       - -Daudacity_use_twolame=local
       - -Daudacity_has_networking=no
       - -Daudacity_has_updates_check=NO
-      # currently disabled because Conan.
-      - -Daudacity_has_vst3=Off
+      - -Daudacity_has_vst3=On
+      - -Daudacity_use_vst3sdk=system
       - -Daudacity_conan_enabled=Off
     post-install:
       - chrpath -d /app/bin/audacity
@@ -225,15 +224,34 @@ modules:
     sources:
       - type: git
         url: https://github.com/audacity/audacity.git
-        commit: ccee770a1b5cb8d06eb7f3bb6480eaa2c03ac405
-        tag: Audacity-3.2.0-beta
+        commit: f7a93ac95e01bfe43ccbf68617cf0e68f95a1787
+        tag: Audacity-3.2.5
         x-checker-data:
           type: git
           tag-pattern: ^Audacity-([\d.]+)$
       - type: patch
-        path: patches/audacity-suil-fix.patch
+        paths:
+          - patches/audacity-suil-fix.patch
+          - patches/audacity-cmake-build.patch
+          - patches/audacity-vst3-g++.patch
+      - type: git
+        dest: vst3sdk
+        url: https://github.com/steinbergmedia/vst3sdk.git
+        tag: v3.7.3_build_20
+        commit: 2cc517019a2681fccf211e6a95776a0af1e16d04
       - type: patch
-        path: patches/cmake-build.patch
+        options:
+          - -d
+          - vst3sdk
+        paths:
+          - patches/vst3sdk.patch
+          - patches/vst3sdk-gcc11.patch
+          - patches/vst3sdk-buildfix.patch
+      - type: patch
+        options:
+          - -d
+          - vst3sdk/public.sdk
+        path: patches/vst3sdk-public-c++.patch
       - type: shell
         commands:
-          - sed -e '42i <release version="3.2.0-beta" date="2022-09-13"/>' -i help/audacity.appdata.xml
+          - sed -e '42i <release version="3.2.5" date="2023-03-01"/>' -i help/audacity.appdata.xml
