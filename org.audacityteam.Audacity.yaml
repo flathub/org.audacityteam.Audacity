@@ -8,6 +8,7 @@ command: audacity
 rename-desktop-file: audacity.desktop
 rename-icon: audacity
 rename-appdata-file: audacity.appdata.xml
+desktop-file-name-prefix: '(Beta) '
 finish-args:
   - --share=ipc
   - --socket=x11
@@ -224,8 +225,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/audacity/audacity.git
-        commit: f7a93ac95e01bfe43ccbf68617cf0e68f95a1787
-        tag: Audacity-3.2.5
+        commit: 32de023d4ae16334a73fd552922ba19afb247721
+        tag:  Audacity-3.3.0-beta-1
         x-checker-data:
           type: git
           tag-pattern: ^Audacity-([\d.]+)$
@@ -233,7 +234,7 @@ modules:
         paths:
           - patches/audacity-suil-fix.patch
           - patches/audacity-cmake-build.patch
-          - patches/audacity-vst3-g++.patch
+          - patches/audacity-vst3-modulefs.patch
       - type: git
         dest: vst3sdk
         url: https://github.com/steinbergmedia/vst3sdk.git
