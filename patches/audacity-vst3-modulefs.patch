@@ -1,0 +1,11 @@
+--- audacity/libraries/lib-vst3/module_linux.cpp-orig	2023-04-15 10:49:45.143347408 -0400
++++ audacity/libraries/lib-vst3/module_linux.cpp	2023-04-15 10:49:57.590564371 -0400
+@@ -43,7 +43,7 @@
+ #include <sys/utsname.h>
+ #include <unistd.h>
+ 
+-#if (__cplusplus >= 201707L)
++#if (__cplusplus >= 201703L)
+ #if __has_include(<filesystem>)
+ #define USE_EXPERIMENTAL_FS 0
+ #elif __has_include(<experimental/filesystem>)
