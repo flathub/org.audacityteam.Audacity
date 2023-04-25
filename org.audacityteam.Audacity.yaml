@@ -8,6 +8,7 @@ command: audacity
 rename-desktop-file: audacity.desktop
 rename-icon: audacity
 rename-appdata-file: audacity.appdata.xml
+desktop-file-name-prefix: '(Beta) '
 finish-args:
   - --share=ipc
   - --socket=x11
@@ -233,7 +234,7 @@ modules:
         paths:
           - patches/audacity-suil-fix.patch
           - patches/audacity-cmake-build.patch
-          - patches/audacity-vst3-g++.patch
+          - patches/audacity-vst3-modulefs.patch
       - type: git
         dest: vst3sdk
         url: https://github.com/steinbergmedia/vst3sdk.git
@@ -254,4 +255,4 @@ modules:
         path: patches/vst3sdk-public-c++.patch
       - type: shell
         commands:
-          - sed -e '42i <release version="3.2.5" date="2023-03-01"/>' -i help/audacity.appdata.xml
+          - sed -e '42i <release version="3.3.0" date="2023-04-24"/>' -i help/audacity.appdata.xml
