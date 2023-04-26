@@ -2,13 +2,12 @@ app-id: org.audacityteam.Audacity
 # freedesktop-sdk should work too, but causes problems with
 # the timeline mouse cursor on some systems for unkown reasons
 runtime: org.gnome.Platform
-runtime-version: '43'
+runtime-version: '44'
 sdk: org.gnome.Sdk
 command: audacity
 rename-desktop-file: audacity.desktop
 rename-icon: audacity
 rename-appdata-file: audacity.appdata.xml
-desktop-file-name-prefix: '(Beta) '
 finish-args:
   - --share=ipc
   - --socket=x11
@@ -21,8 +20,6 @@ finish-args:
   - --env=LD_LIBRARY_PATH=/app/lib/audacity
   - --env=ALSA_CONFIG_PATH=
   - --env=LADSPA_PATH=/app/extensions/Plugins/ladspa
-  - --env=LV2_PATH=$HOME/.lv2:/app/extensions/Plugins/lv2
-  # Audacity uses VST_PATH
   - --env=VST_PATH=/app/extensions/Plugins/vst
   - --env=VST3_PATH=/app/extensions/Plugins/vst3
   # JACK support via pipewire
@@ -215,6 +212,8 @@ modules:
       - -Daudacity_conan_enabled=Off
     post-install:
       - chrpath -d /app/bin/audacity
+      - mv /app/bin/audacity{,.bin}
+      - install -Dm755 ../audacity.sh /app/bin/audacity
       - mv /app/share/mime/packages/{audacity.xml,org.audacityteam.Audacity.xml}
       - install -Dm644 ../help/audacity.appdata.xml -t /app/share/metainfo
       - install -d /app/extensions/Plugins
@@ -253,6 +252,11 @@ modules:
           - -d
           - vst3sdk/public.sdk
         path: patches/vst3sdk-public-c++.patch
+      - type: script
+        dest-filename: audacity.sh
+        commands:
+          - export LV2_PATH=$HOME/.lv2:/app/extensions/Plugins/lv2:/app/lib/lv2
+          - exec audacity.bin $*
       - type: shell
         commands:
           - sed -e '42i <release version="3.3.0" date="2023-04-24"/>' -i help/audacity.appdata.xml
