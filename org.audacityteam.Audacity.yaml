@@ -259,4 +259,4 @@ modules:
           - exec audacity.bin $*
       - type: shell
         commands:
-          - sed -e '42i <release version="3.3.1" date="2023-04-28"/>' -i help/audacity.appdata.xml
+          - sed -e '42i <release version="3.3.2" date="2023-05-05"/>' -i help/audacity.appdata.xml
