@@ -256,7 +256,7 @@ modules:
         dest-filename: audacity.sh
         commands:
           - export LV2_PATH=$HOME/.lv2:/app/extensions/Plugins/lv2:/app/lib/lv2
-          - exec audacity.bin $*
+          - exec audacity.bin "$@"
       - type: shell
         commands:
           - sed -e '42i <release version="3.3.3" date="2023-06-08"/>' -i help/audacity.appdata.xml
