@@ -14,7 +14,12 @@ finish-args:
   - --share=network # Audacity uses network sockets for IPC
   - --socket=pulseaudio
   - --device=all # ALSA
-  - --filesystem=host
+  - --filesystem=home
+  - --filesystem=/media
+  - --filesystem=/mnt
+  - --filesystem=/run/media
+  - --filesystem=/var/run/media
+  - --filesystem=/var/mnt
   # mod-script-pipe provides named pipes in /tmp
   - --filesystem=/tmp
   - --env=LD_LIBRARY_PATH=/app/lib/audacity
