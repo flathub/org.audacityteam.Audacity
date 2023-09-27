@@ -20,3 +20,15 @@ index 23ca64e6..a7c24c60 100644
  #else
  #if SMTG_OS_WINDOWS
  #ifdef __MINGW32__
+diff --git a/public.sdk/source/vst/utility/stringconvert.h b/public.sdk/source/vst/utility/stringconvert.h
+index ff910aa..f15ae78 100644
+--- a/public.sdk/source/vst/utility/stringconvert.h
++++ b/public.sdk/source/vst/utility/stringconvert.h
+@@ -37,6 +37,7 @@
+ #pragma once
+ 
+ #include "pluginterfaces/vst/vsttypes.h"
++#include <cstdint>
+ #include <string>
+ 
+ //------------------------------------------------------------------------

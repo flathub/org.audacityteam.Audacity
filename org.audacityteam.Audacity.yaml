@@ -2,7 +2,7 @@ app-id: org.audacityteam.Audacity
 # freedesktop-sdk should work too, but causes problems with
 # the timeline mouse cursor on some systems for unkown reasons
 runtime: org.gnome.Platform
-runtime-version: '44'
+runtime-version: '45'
 sdk: org.gnome.Sdk
 command: audacity
 rename-desktop-file: audacity.desktop
@@ -33,7 +33,7 @@ add-extensions:
     autodelete: true
   org.freedesktop.LinuxAudio.Plugins:
     directory: extensions/Plugins
-    version: '22.08'
+    version: '23.08'
     add-ld-path: lib
     merge-dirs: ladspa;lv2;vst;vst3
     subdirectories: true
@@ -105,6 +105,8 @@ modules:
           type: anitya
           project-id: 5405
           url-template: https://ffmpeg.org/releases/ffmpeg-$version.tar.xz
+      - type: patch
+        path: patches/ffmpeg-as-fix.patch
 
   - name: ffmpeg-codecs
     config-opts:
@@ -129,6 +131,8 @@ modules:
           type: anitya
           project-id: 5405
           url-template: https://ffmpeg.org/releases/ffmpeg-$version.tar.xz
+      - type: patch
+        path: patches/ffmpeg-as-fix.patch
 
   - name: sqlite
     # version bundled with runtime is missing the SQLITE_DBPAGE virtual table
@@ -231,9 +235,9 @@ modules:
           tag-pattern: ^Audacity-([\d.]+)$
       - type: patch
         paths:
-          - patches/audacity-suil-fix.patch
-          - patches/audacity-cmake-build.patch
-          - patches/audacity-vst3-modulefs.patch
+          - patches/0001-audacity-suil-fix.patch
+          - patches/0002-audacity-c++fs.patch
+          - patches/0003-audacity-po.patch
       - type: git
         dest: vst3sdk
         url: https://github.com/steinbergmedia/vst3sdk.git
@@ -244,14 +248,8 @@ modules:
           - -d
           - vst3sdk
         paths:
-          - patches/vst3sdk.patch
-          - patches/vst3sdk-gcc11.patch
-          - patches/vst3sdk-buildfix.patch
-      - type: patch
-        options:
-          - -d
-          - vst3sdk/public.sdk
-        path: patches/vst3sdk-public-c++.patch
+          - patches/0001-vst3sdk-c++fs.patch
+          - patches/0002-vst3sdk-buildfix.patch
       - type: script
         dest-filename: audacity.sh
         commands:
