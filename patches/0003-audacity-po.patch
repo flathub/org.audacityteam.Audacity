@@ -1,0 +1,26 @@
+diff --git a/locale/be.po b/locale/be.po
+index 017d1d67d..f91f7fd0f 100644
+--- a/locale/be.po
++++ b/locale/be.po
+@@ -4469,7 +4469,7 @@ msgstr "Больш не паказваць гэта папярэджанне"
+ #: src/FileFormats.cpp
+ #, c-format
+ msgid "Error (file may not have been written): %s"
+-msgstr "Памылка (магчыма, файл не запісаны): %hs"
++msgstr "Памылка (магчыма, файл не запісаны): %s"
+ 
+ #: src/FileFormats.cpp
+ #, fuzzy
+diff --git a/locale/fa.po b/locale/fa.po
+index 0374b06ce..954ad648c 100644
+--- a/locale/fa.po
++++ b/locale/fa.po
+@@ -4413,7 +4413,7 @@ msgstr ""
+ #: src/FileFormats.cpp
+ #, c-format
+ msgid "Error (file may not have been written): %s"
+-msgstr "خطا (ممکن است در پرونده نوشته شده باشد) : %hs"
++msgstr "خطا (ممکن است در پرونده نوشته شده باشد) : %s"
+ 
+ #: src/FileFormats.cpp
+ msgid "&Copy uncompressed files into the project (safer)"
