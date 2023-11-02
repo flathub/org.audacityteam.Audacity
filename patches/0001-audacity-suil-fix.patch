@@ -10,10 +10,10 @@ index da299a1bc..d8fc8291d 100644
  #include <memory>
  #include <cstdlib> // Needed for free.
  #ifndef safenew
-diff --git a/src/effects/lv2/LoadLV2.cpp b/src/effects/lv2/LoadLV2.cpp
+diff --git a/libraries/lib-lv2/LoadLV2.cpp b/libraries/lib-lv2/LoadLV2.cpp
 index b101ee734..be665c5a6 100755
---- a/src/effects/lv2/LoadLV2.cpp
-+++ b/src/effects/lv2/LoadLV2.cpp
+--- a/libraries/lib-lv2/LoadLV2.cpp
++++ b/libraries/lib-lv2/LoadLV2.cpp
 @@ -180,7 +180,7 @@ bool LV2EffectsModule::Initialize()
     newVar += wxT(":") + libdir.GetPath();
  

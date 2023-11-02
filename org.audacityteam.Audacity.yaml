@@ -183,6 +183,18 @@ modules:
   - shared-modules/linux-audio/lilv.json
   - deps/suil.json
 
+  - name: rapidjson
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DRAPIDJSON_BUILD_DOC=OFF
+      - -DRAPIDJSON_BUILD_EXAMPLES=OFF
+      - -DRAPIDJSON_BUILD_TESTS=OFF
+      - -DRAPIDJSON_BUILD_THIRDPARTY_GTEST=OFF
+    sources:
+      - type: archive
+        url: https://github.com/miloyip/rapidjson/archive/v1.1.0.tar.gz
+        sha256: bf7ced29704a1e696fbccf2a2b4ea068e7774fa37f6d7dd4039d0787f8bed98e
+
   - name: audacity
     buildsystem: cmake-ninja
     builddir: true
@@ -237,7 +249,7 @@ modules:
         paths:
           - patches/0001-audacity-suil-fix.patch
           - patches/0002-audacity-c++fs.patch
-          - patches/0003-audacity-po.patch
+          - patches/0003-audacity-appstream.patch
       - type: git
         dest: vst3sdk
         url: https://github.com/steinbergmedia/vst3sdk.git
@@ -255,6 +267,3 @@ modules:
         commands:
           - export LV2_PATH=$HOME/.lv2:/app/extensions/Plugins/lv2:/app/lib/lv2
           - exec audacity.bin "$@"
-      - type: shell
-        commands:
-          - sed -e '42i <release version="3.3.3" date="2023-06-08"/>' -i help/audacity.appdata.xml
