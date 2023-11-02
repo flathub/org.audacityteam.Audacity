@@ -1,0 +1,16 @@
+diff --git a/help/audacity.appdata.xml b/help/audacity.appdata.xml
+index 44c12b202..8a5871f73 100644
+--- a/help/audacity.appdata.xml
++++ b/help/audacity.appdata.xml
+@@ -25,6 +25,11 @@
+     <category>Audio</category>
+   </categories>
+   <content_rating type="oars-1.1" />
++  <screenshots>
++    <screenshot>
++      <image>https://github.com/flathub/org.audacityteam.Audacity/raw/master/screenshots/main-window.jpg</image>
++    </screenshot>
++  </screenshots>
+   <url type="homepage">https://www.audacityteam.org/</url>
+   <url type="bugtracker">https://github.com/audacity/audacity/issues</url>
+   <url type="faq">https://manual.audacityteam.org/man/faq.html</url>
