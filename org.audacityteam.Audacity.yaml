@@ -250,7 +250,6 @@ modules:
           - patches/0001-audacity-suil-fix.patch
           - patches/0002-audacity-c++fs.patch
           - patches/0003-audacity-appstream.patch
-          - patches/0004-audacity-simd_aarch64.patch
       - type: git
         dest: vst3sdk
         url: https://github.com/steinbergmedia/vst3sdk.git
