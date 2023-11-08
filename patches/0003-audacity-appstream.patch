@@ -1,16 +1,46 @@
 diff --git a/help/audacity.appdata.xml b/help/audacity.appdata.xml
-index 44c12b202..8a5871f73 100644
+index 44c12b202..373d64d40 100644
 --- a/help/audacity.appdata.xml
 +++ b/help/audacity.appdata.xml
-@@ -25,6 +25,11 @@
+@@ -25,12 +25,41 @@
      <category>Audio</category>
    </categories>
    <content_rating type="oars-1.1" />
 +  <screenshots>
 +    <screenshot>
-+      <image>https://github.com/flathub/org.audacityteam.Audacity/raw/142e6988203e4c9d5296c9350b8d4b095b529c0c/screenshots/main-window.jpg</image>
++      <image>https://github.com/flathub/org.audacityteam.Audacity/raw/95ac50436bfcbbcd032b406544ff806c206d8333/screenshots/main-window.jpg</image>
 +    </screenshot>
 +  </screenshots>
    <url type="homepage">https://www.audacityteam.org/</url>
    <url type="bugtracker">https://github.com/audacity/audacity/issues</url>
    <url type="faq">https://manual.audacityteam.org/man/faq.html</url>
+   <url type="help">https://support.audacityteam.org/</url>
+   <url type="translate">https://support.audacityteam.org/community/contributing/translating</url>
+   <releases>
++    <release version="3.4.1" date="2023-11-08">
++      <description>
++        <p>This is a hotfix release. It fixes the following bugs:</p>
++        <ul>
++          <li>#5467 Fix 24-bit recording.</li>
++          <li>#5488 Fix a crash with .aup importing.</li>
++          <li>#5471 #5483 Fix crossfading of clips and tracks.</li>
++          <li>#5473 Exporting multiple files honors sample rate
++          settings again.</li>
++          <li>#5480 #5417 Fix crashes related to external program
++          exports.</li>
++          <li>#5479 #5476 Fix BSD and ARM builds.</li>
++          <li>#5498 Ctrl+J is now a standard shortcut for joining
++          clips.</li>
++          <li>#5389 Stereo tracks no longer randomly split into
++          mono.</li>
++          <li>#5007 When exporting a file, the file extension is now
++          always added (except for custom FFmpeg and external program
++          exports).</li>
++          <li>#5516 Fix a crash when exporting Opus with older CPUs
++          that don't support AVX.</li>
++        </ul>
++      </description>
++    </release>
+     <release version="3.4.0" date="2023-11-01">
+      <description>
+         <p>New in Audacity 3.4: Our first dedicated music release, featuring beats &amp; bars, time stretching, a new exporter and more!</p>
