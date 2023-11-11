@@ -105,8 +105,6 @@ modules:
           type: anitya
           project-id: 5405
           url-template: https://ffmpeg.org/releases/ffmpeg-$version.tar.xz
-      - type: patch
-        path: patches/ffmpeg-as-fix.patch
 
   - name: ffmpeg-codecs
     config-opts:
@@ -131,8 +129,6 @@ modules:
           type: anitya
           project-id: 5405
           url-template: https://ffmpeg.org/releases/ffmpeg-$version.tar.xz
-      - type: patch
-        path: patches/ffmpeg-as-fix.patch
 
   - name: sqlite
     # version bundled with runtime is missing the SQLITE_DBPAGE virtual table
