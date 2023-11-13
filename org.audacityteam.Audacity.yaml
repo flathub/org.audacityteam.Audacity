@@ -20,7 +20,6 @@ finish-args:
   - --env=LD_LIBRARY_PATH=/app/lib/audacity
   - --env=ALSA_CONFIG_PATH=
   - --env=LADSPA_PATH=/app/extensions/Plugins/ladspa
-  - --env=VST_PATH=/app/extensions/Plugins/vst
   - --env=VST3_PATH=/app/extensions/Plugins/vst3
   # JACK support via pipewire
   - --filesystem=xdg-run/pipewire-0
@@ -246,6 +245,7 @@ modules:
           - patches/0001-audacity-suil-fix.patch
           - patches/0002-audacity-c++fs.patch
           - patches/0003-audacity-appstream.patch
+          - patches/0004-audacity-vst-path.patch
       - type: git
         dest: vst3sdk
         url: https://github.com/steinbergmedia/vst3sdk.git
