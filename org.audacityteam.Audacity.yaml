@@ -66,7 +66,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/wxWidgets/wxWidgets.git
-        tag: v3.1.5
+        tag: v3.2.4
+        commit: 085a136dcb11aca5b1102193f006f8056d5f0876
 
   - deps/lame-3.100.json
   - deps/libid3tag/libid3tag.json
