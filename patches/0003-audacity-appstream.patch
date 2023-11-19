@@ -1,8 +1,8 @@
 diff --git a/help/audacity.appdata.xml b/help/audacity.appdata.xml
-index 44c12b202..373d64d40 100644
+index 44c12b202..f294498d1 100644
 --- a/help/audacity.appdata.xml
 +++ b/help/audacity.appdata.xml
-@@ -25,12 +25,41 @@
+@@ -25,12 +25,76 @@
      <category>Audio</category>
    </categories>
    <content_rating type="oars-1.1" />
@@ -17,6 +17,41 @@ index 44c12b202..373d64d40 100644
    <url type="help">https://support.audacityteam.org/</url>
    <url type="translate">https://support.audacityteam.org/community/contributing/translating</url>
    <releases>
++    <release version="3.4.2" date="2023-11-16">
++      <description>
++        <p>This is a hotfix release. It fixes the following bugs:</p>
++        <ul>
++          <li>#5568 Fix a crash when opening projects with zero-length
++          clips.</li>
++          <li>#5032 When exporting a file, the sample rate of the
++          tracks is now considered, and last-used sample rate is
++          remembered.</li>
++          <li>#5555 Copy-pasting now pastes into
++          audio again by default. This can be changed via Preferences
++          -&gt; Track Behavior -&gt; Always paste audio as new
++          clips.</li>
++          <li>#5549 Mix and render now also resets the gain for the
++          resulting track.</li>
++          <li>#5571 Fix clips shifting to the right when effects are
++          applied to them.</li>
++          <li>#5106 Fix clicks occurring when overdubbing a project
++          with muted tracks.</li>
++          <li>#5533 Fix files being exported without a file extension
++          in rare cases.</li>
++          <li>#5539 Show all sample rates possible for MP2
++          exports.</li>
++          <li>#5518 Fix pasting into labels.</li>
++          <li>#5543 Fix a crash when clearing loops.</li>
++          <li>#5529 Fix copying when "select all audio if selection
++          required" is enabled.</li>
++          <li>#5598 #5552 Fix GTK detection and compilation for
++          wxWidgets 3.2.4.</li>
++          <li>#5551 Fix Nyquist-related crashes.</li>
++          <li>#5604 Fix EQs in macros.</li>
++          <li>#5511 Fix a crash when closing Audacity.</li>
++        </ul>
++      </description>
++    </release>
 +    <release version="3.4.1" date="2023-11-08">
 +      <description>
 +        <p>This is a hotfix release. It fixes the following bugs:</p>
