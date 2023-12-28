@@ -5,7 +5,6 @@ runtime: org.gnome.Platform
 runtime-version: '45'
 sdk: org.gnome.Sdk
 command: audacity
-rename-icon: audacity
 finish-args:
   - --share=ipc
   - --socket=x11
