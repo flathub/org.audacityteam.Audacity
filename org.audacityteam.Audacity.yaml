@@ -5,9 +5,7 @@ runtime: org.gnome.Platform
 runtime-version: '45'
 sdk: org.gnome.Sdk
 command: audacity
-rename-desktop-file: audacity.desktop
 rename-icon: audacity
-rename-appdata-file: audacity.appdata.xml
 finish-args:
   - --share=ipc
   - --socket=x11
@@ -226,9 +224,10 @@ modules:
       - mv /app/bin/audacity{,.bin}
       - install -Dm755 ../audacity.sh /app/bin/audacity
       - mv /app/share/mime/packages/{audacity.xml,org.audacityteam.Audacity.xml}
-      - install -Dm644 ../help/audacity.appdata.xml -t /app/share/metainfo
+      - install -Dm644 ../help/audacity.appdata.xml -T /app/share/metainfo/org.audacityteam.Audacity.appdata.xml
+      - mv /app/share/applications/{audacity.desktop,org.audacityteam.Audacity.desktop}
       - install -d /app/extensions/Plugins
-      - desktop-file-edit --set-key=Exec --set-value="audacity %F" /app/share/applications/audacity.desktop
+      - desktop-file-edit --set-key=Exec --set-value="audacity %F" /app/share/applications/org.audacityteam.Audacity.desktop
     cleanup:
       - /share/audacity/include
       - /share/pixmaps
