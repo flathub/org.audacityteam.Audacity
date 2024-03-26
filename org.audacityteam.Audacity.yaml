@@ -8,6 +8,7 @@ command: audacity
 rename-desktop-file: audacity.desktop
 rename-icon: audacity
 rename-appdata-file: audacity.appdata.xml
+desktop-file-name-prefix: '(Beta) '
 finish-args:
   - --share=ipc
   - --socket=x11
