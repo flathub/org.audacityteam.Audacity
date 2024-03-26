@@ -8,20 +8,19 @@ command: audacity
 rename-desktop-file: audacity.desktop
 rename-icon: audacity
 rename-appdata-file: audacity.appdata.xml
+rename-mime-file: audacity.xml
 desktop-file-name-prefix: '(Beta) '
 finish-args:
   - --share=ipc
   - --socket=x11
   - --share=network # Audacity uses network sockets for IPC
   - --socket=pulseaudio
-  - --device=all # ALSA
+  - --device=dri
   - --filesystem=host
   # mod-script-pipe provides named pipes in /tmp
   - --filesystem=/tmp
   - --env=LD_LIBRARY_PATH=/app/lib/audacity
   - --env=ALSA_CONFIG_PATH=
-  - --env=LADSPA_PATH=/app/extensions/Plugins/ladspa
-  - --env=VST3_PATH=/app/extensions/Plugins/vst3
   # JACK support via pipewire
   - --filesystem=xdg-run/pipewire-0
 
@@ -191,6 +190,8 @@ modules:
         url: https://github.com/miloyip/rapidjson/archive/v1.1.0.tar.gz
         sha256: bf7ced29704a1e696fbccf2a2b4ea068e7774fa37f6d7dd4039d0787f8bed98e
 
+  - gtkmm.json
+
   - name: audacity
     buildsystem: cmake-ninja
     builddir: true
@@ -226,7 +227,6 @@ modules:
       - chrpath -d /app/bin/audacity
       - mv /app/bin/audacity{,.bin}
       - install -Dm755 ../audacity.sh /app/bin/audacity
-      - mv /app/share/mime/packages/{audacity.xml,org.audacityteam.Audacity.xml}
       - install -Dm644 ../help/audacity.appdata.xml -t /app/share/metainfo
       - install -d /app/extensions/Plugins
       - desktop-file-edit --set-key=Exec --set-value="audacity %F" /app/share/applications/audacity.desktop
@@ -236,8 +236,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/audacity/audacity.git
-        commit: 9dd60f25c6cd271879756ea57fd67e582fe17d91
-        tag: Audacity-3.4.2
+        commit: 53b116bc554c10564784d268675b6635a270756c
+        tag: Audacity-3.5.0-beta-2
         x-checker-data:
           type: git
           tag-pattern: ^Audacity-([\d.]+)$
@@ -262,5 +262,7 @@ modules:
       - type: script
         dest-filename: audacity.sh
         commands:
+          - export LADSPA_PATH=/app/extensions/Plugins/ladspa
+          - export VST3_PATH=/app/extensions/Plugins/vst3
           - export LV2_PATH=$HOME/.lv2:/app/extensions/Plugins/lv2:/app/lib/lv2
           - exec audacity.bin "$@"

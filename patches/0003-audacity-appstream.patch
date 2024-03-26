@@ -1,13 +1,14 @@
 diff --git a/help/audacity.appdata.xml b/help/audacity.appdata.xml
-index 44c12b202..f294498d1 100644
+index 44c12b202..023b9dae5 100644
 --- a/help/audacity.appdata.xml
 +++ b/help/audacity.appdata.xml
-@@ -25,12 +25,76 @@
+@@ -25,16 +25,81 @@
      <category>Audio</category>
    </categories>
    <content_rating type="oars-1.1" />
++  <developer_name>Audacity Developers</developer_name>
 +  <screenshots>
-+    <screenshot>
++    <screenshot type="default">
 +      <image>https://github.com/flathub/org.audacityteam.Audacity/raw/95ac50436bfcbbcd032b406544ff806c206d8333/screenshots/main-window.jpg</image>
 +    </screenshot>
 +  </screenshots>
@@ -79,3 +80,8 @@ index 44c12b202..f294498d1 100644
      <release version="3.4.0" date="2023-11-01">
       <description>
          <p>New in Audacity 3.4: Our first dedicated music release, featuring beats &amp; bars, time stretching, a new exporter and more!</p>
+-        <p>Watch the <a href="https://audacityteam.org/3.4.0-video">Release video</a> or read the <a href="https://support.audacityteam.org/additional-resources/changelog"> changelog</a> to learn more.</p>
++        <p>Watch the Release video or read the changelog to learn more.</p>
+         <p>The changelog also contains information about subsequent 3.4.x patches, should any be available.</p>
+       </description>
+     </release>
