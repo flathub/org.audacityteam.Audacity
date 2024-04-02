@@ -1,12 +1,11 @@
 diff --git a/help/audacity.appdata.xml b/help/audacity.appdata.xml
-index 44c12b202..023b9dae5 100644
+index 170c50c1b..eca6dcc7f 100644
 --- a/help/audacity.appdata.xml
 +++ b/help/audacity.appdata.xml
-@@ -25,16 +25,81 @@
+@@ -25,23 +25,87 @@
      <category>Audio</category>
    </categories>
    <content_rating type="oars-1.1" />
-+  <developer_name>Audacity Developers</developer_name>
 +  <screenshots>
 +    <screenshot type="default">
 +      <image>https://github.com/flathub/org.audacityteam.Audacity/raw/95ac50436bfcbbcd032b406544ff806c206d8333/screenshots/main-window.jpg</image>
@@ -18,6 +17,16 @@ index 44c12b202..023b9dae5 100644
    <url type="help">https://support.audacityteam.org/</url>
    <url type="translate">https://support.audacityteam.org/community/contributing/translating</url>
    <releases>
+-  <release version="3.5.0" date="2024-04-01">
+-     <description>
++    <release version="3.5.0~beta3" date="2024-03-29 ">
++      <description>
+         <p>New in Audacity 3.5: Cloud saving, tempo detection, pitch shifting &amp; more!</p>
+-        <p>Watch the <a href="https://audacityteam.org/3.5.0-video">Release video</a> or read the <a href="https://support.audacityteam.org/additional-resources/changelog">changelog</a> to learn more.</p>
++        <p>Watch the Release video or read the changelog to learn more.</p>
+         <p>The changelog also contains information about subsequent 3.5.x patches, should any be available.</p>
+       </description>
+     </release>
 +    <release version="3.4.2" date="2023-11-16">
 +      <description>
 +        <p>This is a hotfix release. It fixes the following bugs:</p>
