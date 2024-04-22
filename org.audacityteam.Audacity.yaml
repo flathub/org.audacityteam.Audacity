@@ -98,8 +98,8 @@ modules:
       - /share/ffmpeg/examples
     sources:
       - type: archive
-        url: https://ffmpeg.org/releases/ffmpeg-6.1.1.tar.xz
-        sha256: 8684f4b00f94b85461884c3719382f1261f0d9eb3d59640a1f4ac0873616f968
+        url: https://ffmpeg.org/releases/ffmpeg-7.0.tar.xz
+        sha256: 4426a94dd2c814945456600c8adfc402bee65ec14a70e8c531ec9a2cd651da7b
         x-checker-data:
           type: anitya
           project-id: 5405
@@ -122,8 +122,8 @@ modules:
       - /lib/codecs/share
     sources:
       - type: archive
-        url: https://ffmpeg.org/releases/ffmpeg-6.1.1.tar.xz
-        sha256: 8684f4b00f94b85461884c3719382f1261f0d9eb3d59640a1f4ac0873616f968
+        url: https://ffmpeg.org/releases/ffmpeg-7.0.tar.xz
+        sha256: 4426a94dd2c814945456600c8adfc402bee65ec14a70e8c531ec9a2cd651da7b
         x-checker-data:
           type: anitya
           project-id: 5405
@@ -235,8 +235,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/audacity/audacity.git
-        commit: 9dd60f25c6cd271879756ea57fd67e582fe17d91
-        tag: Audacity-3.4.2
+        commit: 54275321175a6d796953e4bb47bfb6775535d276
+        tag: Audacity-3.5.0
         x-checker-data:
           type: git
           tag-pattern: ^Audacity-([\d.]+)$
