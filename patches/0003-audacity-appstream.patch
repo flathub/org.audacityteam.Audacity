@@ -1,13 +1,13 @@
 diff --git a/help/audacity.appdata.xml b/help/audacity.appdata.xml
-index 44c12b202..f294498d1 100644
+index 170c50c1b..eca6dcc7f 100644
 --- a/help/audacity.appdata.xml
 +++ b/help/audacity.appdata.xml
-@@ -25,12 +25,76 @@
+@@ -25,9 +25,14 @@
      <category>Audio</category>
    </categories>
    <content_rating type="oars-1.1" />
 +  <screenshots>
-+    <screenshot>
++    <screenshot type="default">
 +      <image>https://github.com/flathub/org.audacityteam.Audacity/raw/95ac50436bfcbbcd032b406544ff806c206d8333/screenshots/main-window.jpg</image>
 +    </screenshot>
 +  </screenshots>
@@ -17,65 +17,3 @@ index 44c12b202..f294498d1 100644
    <url type="help">https://support.audacityteam.org/</url>
    <url type="translate">https://support.audacityteam.org/community/contributing/translating</url>
    <releases>
-+    <release version="3.4.2" date="2023-11-16">
-+      <description>
-+        <p>This is a hotfix release. It fixes the following bugs:</p>
-+        <ul>
-+          <li>#5568 Fix a crash when opening projects with zero-length
-+          clips.</li>
-+          <li>#5032 When exporting a file, the sample rate of the
-+          tracks is now considered, and last-used sample rate is
-+          remembered.</li>
-+          <li>#5555 Copy-pasting now pastes into
-+          audio again by default. This can be changed via Preferences
-+          -&gt; Track Behavior -&gt; Always paste audio as new
-+          clips.</li>
-+          <li>#5549 Mix and render now also resets the gain for the
-+          resulting track.</li>
-+          <li>#5571 Fix clips shifting to the right when effects are
-+          applied to them.</li>
-+          <li>#5106 Fix clicks occurring when overdubbing a project
-+          with muted tracks.</li>
-+          <li>#5533 Fix files being exported without a file extension
-+          in rare cases.</li>
-+          <li>#5539 Show all sample rates possible for MP2
-+          exports.</li>
-+          <li>#5518 Fix pasting into labels.</li>
-+          <li>#5543 Fix a crash when clearing loops.</li>
-+          <li>#5529 Fix copying when "select all audio if selection
-+          required" is enabled.</li>
-+          <li>#5598 #5552 Fix GTK detection and compilation for
-+          wxWidgets 3.2.4.</li>
-+          <li>#5551 Fix Nyquist-related crashes.</li>
-+          <li>#5604 Fix EQs in macros.</li>
-+          <li>#5511 Fix a crash when closing Audacity.</li>
-+        </ul>
-+      </description>
-+    </release>
-+    <release version="3.4.1" date="2023-11-08">
-+      <description>
-+        <p>This is a hotfix release. It fixes the following bugs:</p>
-+        <ul>
-+          <li>#5467 Fix 24-bit recording.</li>
-+          <li>#5488 Fix a crash with .aup importing.</li>
-+          <li>#5471 #5483 Fix crossfading of clips and tracks.</li>
-+          <li>#5473 Exporting multiple files honors sample rate
-+          settings again.</li>
-+          <li>#5480 #5417 Fix crashes related to external program
-+          exports.</li>
-+          <li>#5479 #5476 Fix BSD and ARM builds.</li>
-+          <li>#5498 Ctrl+J is now a standard shortcut for joining
-+          clips.</li>
-+          <li>#5389 Stereo tracks no longer randomly split into
-+          mono.</li>
-+          <li>#5007 When exporting a file, the file extension is now
-+          always added (except for custom FFmpeg and external program
-+          exports).</li>
-+          <li>#5516 Fix a crash when exporting Opus with older CPUs
-+          that don't support AVX.</li>
-+        </ul>
-+      </description>
-+    </release>
-     <release version="3.4.0" date="2023-11-01">
-      <description>
-         <p>New in Audacity 3.4: Our first dedicated music release, featuring beats &amp; bars, time stretching, a new exporter and more!</p>

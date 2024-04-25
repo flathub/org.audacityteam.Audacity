@@ -1,15 +1,3 @@
-diff --git a/libraries/lib-utility/MemoryX.h b/libraries/lib-utility/MemoryX.h
-index da299a1bc..d8fc8291d 100644
---- a/libraries/lib-utility/MemoryX.h
-+++ b/libraries/lib-utility/MemoryX.h
-@@ -3,6 +3,7 @@
- 
- // C++ standard header <memory> with a few extensions
- #include <iterator>
-+#include <limits>
- #include <memory>
- #include <cstdlib> // Needed for free.
- #ifndef safenew
 diff --git a/libraries/lib-lv2/LoadLV2.cpp b/libraries/lib-lv2/LoadLV2.cpp
 index b101ee734..be665c5a6 100755
 --- a/libraries/lib-lv2/LoadLV2.cpp

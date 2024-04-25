@@ -8,19 +8,18 @@ command: audacity
 rename-desktop-file: audacity.desktop
 rename-icon: audacity
 rename-appdata-file: audacity.appdata.xml
+rename-mime-file: audacity.xml
 finish-args:
   - --share=ipc
   - --socket=x11
   - --share=network # Audacity uses network sockets for IPC
   - --socket=pulseaudio
-  - --device=all # ALSA
+  - --device=dri
   - --filesystem=host
   # mod-script-pipe provides named pipes in /tmp
   - --filesystem=/tmp
   - --env=LD_LIBRARY_PATH=/app/lib/audacity
   - --env=ALSA_CONFIG_PATH=
-  - --env=LADSPA_PATH=/app/extensions/Plugins/ladspa
-  - --env=VST3_PATH=/app/extensions/Plugins/vst3
   # JACK support via pipewire
   - --filesystem=xdg-run/pipewire-0
 
@@ -98,8 +97,8 @@ modules:
       - /share/ffmpeg/examples
     sources:
       - type: archive
-        url: https://ffmpeg.org/releases/ffmpeg-6.1.1.tar.xz
-        sha256: 8684f4b00f94b85461884c3719382f1261f0d9eb3d59640a1f4ac0873616f968
+        url: https://ffmpeg.org/releases/ffmpeg-7.0.tar.xz
+        sha256: 4426a94dd2c814945456600c8adfc402bee65ec14a70e8c531ec9a2cd651da7b
         x-checker-data:
           type: anitya
           project-id: 5405
@@ -122,8 +121,8 @@ modules:
       - /lib/codecs/share
     sources:
       - type: archive
-        url: https://ffmpeg.org/releases/ffmpeg-6.1.1.tar.xz
-        sha256: 8684f4b00f94b85461884c3719382f1261f0d9eb3d59640a1f4ac0873616f968
+        url: https://ffmpeg.org/releases/ffmpeg-7.0.tar.xz
+        sha256: 4426a94dd2c814945456600c8adfc402bee65ec14a70e8c531ec9a2cd651da7b
         x-checker-data:
           type: anitya
           project-id: 5405
@@ -190,6 +189,8 @@ modules:
         url: https://github.com/miloyip/rapidjson/archive/v1.1.0.tar.gz
         sha256: bf7ced29704a1e696fbccf2a2b4ea068e7774fa37f6d7dd4039d0787f8bed98e
 
+  - gtkmm.json
+
   - name: audacity
     buildsystem: cmake-ninja
     builddir: true
@@ -225,7 +226,6 @@ modules:
       - chrpath -d /app/bin/audacity
       - mv /app/bin/audacity{,.bin}
       - install -Dm755 ../audacity.sh /app/bin/audacity
-      - mv /app/share/mime/packages/{audacity.xml,org.audacityteam.Audacity.xml}
       - install -Dm644 ../help/audacity.appdata.xml -t /app/share/metainfo
       - install -d /app/extensions/Plugins
       - desktop-file-edit --set-key=Exec --set-value="audacity %F" /app/share/applications/audacity.desktop
@@ -235,8 +235,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/audacity/audacity.git
-        commit: 9dd60f25c6cd271879756ea57fd67e582fe17d91
-        tag: Audacity-3.4.2
+        commit: 54275321175a6d796953e4bb47bfb6775535d276
+        tag: Audacity-3.5.0
         x-checker-data:
           type: git
           tag-pattern: ^Audacity-([\d.]+)$
@@ -261,5 +261,7 @@ modules:
       - type: script
         dest-filename: audacity.sh
         commands:
+          - export LADSPA_PATH=/app/extensions/Plugins/ladspa
+          - export VST3_PATH=/app/extensions/Plugins/vst3
           - export LV2_PATH=$HOME/.lv2:/app/extensions/Plugins/lv2:/app/lib/lv2
           - exec audacity.bin "$@"
