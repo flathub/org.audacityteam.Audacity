@@ -1,5 +1,5 @@
 diff --git a/help/audacity.appdata.xml b/help/audacity.appdata.xml
-index ed63810a8..c3cf15725 100644
+index 64a1e31e8..356bc5423 100644
 --- a/help/audacity.appdata.xml
 +++ b/help/audacity.appdata.xml
 @@ -25,12 +25,18 @@
@@ -17,7 +17,7 @@ index ed63810a8..c3cf15725 100644
    <url type="help">https://support.audacityteam.org/</url>
    <url type="translate">https://support.audacityteam.org/community/contributing/translating</url>
    <releases>
-+    <release version="3.5.1" date="2024-04-24" />
-     <release version="3.5.0" date="2024-04-22">
++    <release version="3.6.1" date="2024-07-22" />
+     <release version="3.6.0" date="2024-07-15">
       <description>
-         <p>New in Audacity 3.5: Cloud saving, automatic tempo detection, pitch shifting and more!</p>
+         <p>New in Audacity 3.6: Master effects, and a new Limiter and Compressor!</p>
