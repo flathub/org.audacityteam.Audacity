@@ -2,7 +2,7 @@ diff --git a/help/audacity.appdata.xml b/help/audacity.appdata.xml
 index ed63810a8..c3cf15725 100644
 --- a/help/audacity.appdata.xml
 +++ b/help/audacity.appdata.xml
-@@ -25,12 +25,18 @@
+@@ -25,6 +25,11 @@
      <category>Audio</category>
    </categories>
    <content_rating type="oars-1.1" />
@@ -14,10 +14,3 @@ index ed63810a8..c3cf15725 100644
    <url type="homepage">https://www.audacityteam.org/</url>
    <url type="bugtracker">https://github.com/audacity/audacity/issues</url>
    <url type="faq">https://manual.audacityteam.org/man/faq.html</url>
-   <url type="help">https://support.audacityteam.org/</url>
-   <url type="translate">https://support.audacityteam.org/community/contributing/translating</url>
-   <releases>
-+    <release version="3.5.1" date="2024-04-24" />
-     <release version="3.5.0" date="2024-04-22">
-      <description>
-         <p>New in Audacity 3.5: Cloud saving, automatic tempo detection, pitch shifting and more!</p>
