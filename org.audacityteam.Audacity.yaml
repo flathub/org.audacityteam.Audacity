@@ -2,7 +2,7 @@ app-id: org.audacityteam.Audacity
 # freedesktop-sdk should work too, but causes problems with
 # the timeline mouse cursor on some systems for unknown reasons
 runtime: org.gnome.Platform
-runtime-version: '45'
+runtime-version: '46'
 sdk: org.gnome.Sdk
 command: audacity
 rename-desktop-file: audacity.desktop
