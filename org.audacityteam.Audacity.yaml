@@ -2,7 +2,7 @@ app-id: org.audacityteam.Audacity
 # freedesktop-sdk should work too, but causes problems with
 # the timeline mouse cursor on some systems for unknown reasons
 runtime: org.gnome.Platform
-runtime-version: '46'
+runtime-version: '47'
 sdk: org.gnome.Sdk
 command: audacity
 rename-desktop-file: audacity.desktop
@@ -31,7 +31,7 @@ add-extensions:
     autodelete: true
   org.freedesktop.LinuxAudio.Plugins:
     directory: extensions/Plugins
-    version: '23.08'
+    version: '24.08'
     add-ld-path: lib
     merge-dirs: ladspa;lv2;vst;vst3
     subdirectories: true
@@ -66,7 +66,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/wxWidgets/wxWidgets.git
-        tag: v3.1.5
+        tag: v3.2.6
 
   - deps/lame-3.100.json
   - deps/libid3tag/libid3tag.json
@@ -168,8 +168,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://github.com/mixxxdj/portmidi/archive/refs/tags/236.tar.gz
-        sha256: 5db9bcb78c728eb81218e905faa5f02eab1f851b3ae5e5b13312755b9b0db943
+        url: https://github.com/PortMidi/portmidi/archive/refs/tags/v2.0.4.tar.gz
+        sha256: 64893e823ae146cabd3ad7f9a9a9c5332746abe7847c557b99b2577afa8a607c
     cleanup:
       - /bin
 
@@ -188,6 +188,9 @@ modules:
       - type: archive
         url: https://github.com/miloyip/rapidjson/archive/v1.1.0.tar.gz
         sha256: bf7ced29704a1e696fbccf2a2b4ea068e7774fa37f6d7dd4039d0787f8bed98e
+      - type: patch
+        paths:
+          - patches/0001-rapidjson-gcc14.patch
 
   - gtkmm.json
 
