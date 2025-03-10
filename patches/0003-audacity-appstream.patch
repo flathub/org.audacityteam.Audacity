@@ -2,7 +2,7 @@ diff --git a/help/audacity.appdata.xml b/help/audacity.appdata.xml
 index a58aa94fd..306695333 100644
 --- a/help/audacity.appdata.xml
 +++ b/help/audacity.appdata.xml
-@@ -25,12 +25,18 @@
+@@ -25,9 +25,14 @@
      <category>Audio</category>
    </categories>
    <content_rating type="oars-1.1" />
@@ -17,7 +17,3 @@ index a58aa94fd..306695333 100644
    <url type="help">https://support.audacityteam.org/</url>
    <url type="translate">https://support.audacityteam.org/community/contributing/translating</url>
    <releases>
-+    <release version="3.7.1" date="2024-12-11" />
-     <release version="3.7.0" date="2024-10-30">
-      <description>
-         <p>The 3.7.x series of releases is primarily for maintenance while we work on Audacity 4.0.</p>
