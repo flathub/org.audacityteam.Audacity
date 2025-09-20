@@ -1,0 +1,30 @@
+From 2d04f7e843fdadc008aa453eb29a47bfca71d931 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Hubert=20Figui=C3=A8re?= <hub@figuiere.net>
+Date: Fri, 19 Sep 2025 10:20:08 -0400
+Subject: [PATCH 5/5] cmake: CMake hate compatibility
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+And this project decide to call CMake from the command line
+
+Signed-off-by: Hubert Figuière <hub@figuiere.net>
+---
+ cmake-proxies/cmake-modules/Findvst3sdk.cmake | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/cmake-proxies/cmake-modules/Findvst3sdk.cmake b/cmake-proxies/cmake-modules/Findvst3sdk.cmake
+index dea6e1102..bdd688e98 100644
+--- a/cmake-proxies/cmake-modules/Findvst3sdk.cmake
++++ b/cmake-proxies/cmake-modules/Findvst3sdk.cmake
+@@ -35,6 +35,7 @@ if( NOT vst3sdk_FOUND )
+          -D SMTG_CREATE_BUNDLE_FOR_WINDOWS=Off
+          -D SMTG_MYPLUGINS_SRC_PATH=""
+          -D SMTG_RUN_VST_VALIDATOR=Off
++         -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+ 
+       RESULT_VARIABLE vst3sdk_configure_result
+    )
+-- 
+2.50.1
+

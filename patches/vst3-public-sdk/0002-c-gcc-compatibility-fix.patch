@@ -1,0 +1,93 @@
+From 780a634c3186104fbf6806fc724d7cb7fec72d0d Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Hubert=20Figui=C3=A8re?= <hub@figuiere.net>
+Date: Fri, 19 Sep 2025 13:24:15 -0400
+Subject: [PATCH 2/2] c++: gcc compatibility fix
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Hubert Figuière <hub@figuiere.net>
+---
+ samples/vst-hosting/audiohost/source/media/imediaserver.h | 1 +
+ source/vst/hosting/module.h                               | 1 +
+ source/vst/utility/stringconvert.h                        | 1 +
+ source/vst/utility/uid.h                                  | 1 +
+ source/vst/utility/versionparser.h                        | 1 +
+ source/vst/utility/vst2persistence.cpp                    | 1 +
+ 6 files changed, 6 insertions(+)
+
+diff --git a/samples/vst-hosting/audiohost/source/media/imediaserver.h b/samples/vst-hosting/audiohost/source/media/imediaserver.h
+index c6cfd67..c323343 100644
+--- a/samples/vst-hosting/audiohost/source/media/imediaserver.h
++++ b/samples/vst-hosting/audiohost/source/media/imediaserver.h
+@@ -37,6 +37,7 @@
+ 
+ #pragma once
+ 
++#include <cstdint>
+ #include <memory>
+ #include <string>
+ #include <vector>
+diff --git a/source/vst/hosting/module.h b/source/vst/hosting/module.h
+index 05f6b5e..7fa85b9 100644
+--- a/source/vst/hosting/module.h
++++ b/source/vst/hosting/module.h
+@@ -38,6 +38,7 @@
+ 
+ #include "../utility/uid.h"
+ #include "pluginterfaces/base/ipluginbase.h"
++#include <cstdint>
+ #include <utility>
+ #include <vector>
+ 
+diff --git a/source/vst/utility/stringconvert.h b/source/vst/utility/stringconvert.h
+index ff910aa..f15ae78 100644
+--- a/source/vst/utility/stringconvert.h
++++ b/source/vst/utility/stringconvert.h
+@@ -37,6 +37,7 @@
+ #pragma once
+ 
+ #include "pluginterfaces/vst/vsttypes.h"
++#include <cstdint>
+ #include <string>
+ 
+ //------------------------------------------------------------------------
+diff --git a/source/vst/utility/uid.h b/source/vst/utility/uid.h
+index b03d976..6d485d2 100644
+--- a/source/vst/utility/uid.h
++++ b/source/vst/utility/uid.h
+@@ -38,6 +38,7 @@
+ 
+ #include "optional.h"
+ #include "pluginterfaces/base/funknown.h"
++#include <cstdint>
+ #include <string>
+ 
+ //------------------------------------------------------------------------
+diff --git a/source/vst/utility/versionparser.h b/source/vst/utility/versionparser.h
+index b6a8396..942c7ae 100644
+--- a/source/vst/utility/versionparser.h
++++ b/source/vst/utility/versionparser.h
+@@ -36,6 +36,7 @@
+ #pragma once
+ 
+ #include "public.sdk/source/vst/utility/optional.h"
++#include <cstdint>
+ #include <algorithm>
+ #include <array>
+ #include <cctype>
+diff --git a/source/vst/utility/vst2persistence.cpp b/source/vst/utility/vst2persistence.cpp
+index e6c84fc..f756441 100644
+--- a/source/vst/utility/vst2persistence.cpp
++++ b/source/vst/utility/vst2persistence.cpp
+@@ -35,6 +35,7 @@
+ 
+ #include "public.sdk/source/vst/utility/vst2persistence.h"
+ #include "pluginterfaces/base/fplatform.h"
++#include <cstdint>
+ #include <limits>
+ 
+ //------------------------------------------------------------------------
+-- 
+2.50.1
+

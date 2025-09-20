@@ -1,0 +1,29 @@
+From 728e8499ddff8b60c50c72f7024656421a31e316 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Hubert=20Figui=C3=A8re?= <hub@figuiere.net>
+Date: Fri, 19 Sep 2025 13:22:07 -0400
+Subject: [PATCH] build: don't add libstdc++fs
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Hubert Figuière <hub@figuiere.net>
+---
+ modules/SMTG_PlatformToolset.cmake | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/modules/SMTG_PlatformToolset.cmake b/modules/SMTG_PlatformToolset.cmake
+index 9bed3d5..a0fa1d1 100644
+--- a/modules/SMTG_PlatformToolset.cmake
++++ b/modules/SMTG_PlatformToolset.cmake
+@@ -59,7 +59,7 @@ macro(smtg_setup_platform_toolset)
+                     set(CMAKE_ANDROID_STL_TYPE c++_static)
+                     link_libraries(dl)
+                  else()
+-                    link_libraries(stdc++fs pthread dl)
++                    link_libraries(pthread dl)
+                 endif(ANDROID)
+             endif(SMTG_MAC)
+         endif(XCODE)
+-- 
+2.50.1
+

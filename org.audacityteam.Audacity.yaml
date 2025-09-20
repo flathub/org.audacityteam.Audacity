@@ -2,7 +2,7 @@ app-id: org.audacityteam.Audacity
 # freedesktop-sdk should work too, but causes problems with
 # the timeline mouse cursor on some systems for unknown reasons
 runtime: org.gnome.Platform
-runtime-version: '48'
+runtime-version: '49'
 sdk: org.gnome.Sdk
 command: audacity
 rename-desktop-file: audacity.desktop
@@ -31,7 +31,7 @@ add-extensions:
     autodelete: true
   org.freedesktop.LinuxAudio.Plugins:
     directory: extensions/Plugins
-    version: '24.08'
+    version: '25.08'
     add-ld-path: lib
     merge-dirs: ladspa;lv2;vst;vst3
     subdirectories: true
@@ -157,6 +157,7 @@ modules:
   - name: portaudio
     buildsystem: cmake-ninja
     config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
@@ -180,6 +181,7 @@ modules:
   - name: rapidjson
     buildsystem: cmake-ninja
     config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       - -DRAPIDJSON_BUILD_DOC=OFF
       - -DRAPIDJSON_BUILD_EXAMPLES=OFF
       - -DRAPIDJSON_BUILD_TESTS=OFF
@@ -198,6 +200,7 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DCMAKE_INSTALL_LIBDIR=/app/lib
       - -DAUDACITY_BUILD_LEVEL=2
@@ -245,10 +248,11 @@ modules:
           tag-pattern: ^Audacity-([\d.]+)$
       - type: patch
         paths:
-          - patches/0001-audacity-suil-fix.patch
-          - patches/0002-audacity-c++fs.patch
-          - patches/0003-audacity-appstream.patch
-          - patches/0004-audacity-vst-path.patch
+          - patches/audacity/0001-flatpak-Hardcode-the-proper-path-to-suil.patch
+          - patches/audacity/0002-c-requiring-std-fs-is-an-ubuntu-ism.patch
+          - patches/audacity/0003-appstream-Add-mandatory-screenshot.patch
+          - patches/audacity/0004-vst-Set-proper-path-since-it-ignore-VST_PATH.patch
+          - patches/audacity/0005-cmake-CMake-hate-compatibility.patch
       - type: git
         dest: vst3sdk
         url: https://github.com/steinbergmedia/vst3sdk.git
@@ -257,10 +261,22 @@ modules:
       - type: patch
         options:
           - -d
-          - vst3sdk
+          - vst3sdk/cmake
         paths:
-          - patches/0001-vst3sdk-c++fs.patch
-          - patches/0002-vst3sdk-buildfix.patch
+          - patches/vst3-cmake/0001-build-don-t-add-libstdc-fs.patch
+      - type: patch
+        options:
+          - -d
+          - vst3sdk/pluginterfaces
+        paths:
+          - patches/vst3-pluginterfaces/0001-c-gcc-compatibility-fix.patch
+      - type: patch
+        options:
+          - -d
+          - vst3sdk/public.sdk
+        paths:
+          - patches/vst3-public-sdk/0001-vst-Fix-gcc-version-test.patch
+          - patches/vst3-public-sdk/0002-c-gcc-compatibility-fix.patch
       - type: script
         dest-filename: audacity.sh
         commands:

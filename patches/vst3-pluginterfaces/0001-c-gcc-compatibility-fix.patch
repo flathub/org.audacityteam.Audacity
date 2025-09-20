@@ -1,0 +1,38 @@
+From 55a7176b32124ea079c4b464a4b48d06a4bfa102 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Hubert=20Figui=C3=A8re?= <hub@figuiere.net>
+Date: Fri, 19 Sep 2025 13:23:15 -0400
+Subject: [PATCH] c++: gcc compatibility fix
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Hubert Figuière <hub@figuiere.net>
+---
+ base/funknown.cpp | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/base/funknown.cpp b/base/funknown.cpp
+index 23ca64e..a7c24c6 100644
+--- a/base/funknown.cpp
++++ b/base/funknown.cpp
+@@ -59,6 +59,8 @@
+ #include <stdatomic.h>
+ #endif
+ 
++#include <atomic>
++
+ namespace Steinberg {
+ 
+ //------------------------------------------------------------------------
+@@ -88,7 +90,7 @@ namespace FUnknownPrivate {
+ int32 PLUGIN_API atomicAdd (int32& var, int32 d)
+ {
+ #if SMTG_USE_STDATOMIC_H
+-	return atomic_fetch_add (reinterpret_cast<atomic_int_least32_t*> (&var), d) + d;
++	return atomic_fetch_add (reinterpret_cast<std::atomic_int_least32_t*> (&var), d) + d;
+ #else
+ #if SMTG_OS_WINDOWS
+ #ifdef __MINGW32__
+-- 
+2.50.1
+

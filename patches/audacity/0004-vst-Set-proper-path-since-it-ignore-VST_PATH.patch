@@ -1,0 +1,32 @@
+From 1e874c3dbfa40ba1c768b30963adc2a707aafb89 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Hubert=20Figui=C3=A8re?= <hub@figuiere.net>
+Date: Fri, 19 Sep 2025 10:23:35 -0400
+Subject: [PATCH 4/5] vst: Set proper path since it ignore VST_PATH
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Hubert Figuière <hub@figuiere.net>
+---
+ libraries/lib-vst/VSTEffectsModule.cpp | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/libraries/lib-vst/VSTEffectsModule.cpp b/libraries/lib-vst/VSTEffectsModule.cpp
+index 8fd91e662..f4f2074a2 100644
+--- a/libraries/lib-vst/VSTEffectsModule.cpp
++++ b/libraries/lib-vst/VSTEffectsModule.cpp
+@@ -252,9 +252,8 @@ PluginPaths VSTEffectsModule::FindModulePaths(PluginManagerInterface & pm)
+       // We add this "non-default" one
+       pathList.push_back(wxT(LIBDIR) wxT("/vst"));
+ 
+-      // These are the defaults used by other hosts
+-      pathList.push_back(wxT("/usr/lib/vst"));
+-      pathList.push_back(wxT("/usr/local/lib/vst"));
++      // Flatpak default
++      pathList.push_back(wxT("/app/extensions/Plugins/vst"));
+       pathList.push_back(wxGetHomeDir() + wxFILE_SEP_PATH + wxT(".vst"));
+    }
+    
+-- 
+2.50.1
+
