@@ -42,8 +42,8 @@
       "type": "shell",
       "commands": [
         "rm compat.c frametype.c",
-        "cp /usr/share/gnu-config/config.sub .",
-        "cp /usr/share/gnu-config/config.guess ."
+        "cp /usr/share/automake-*/config.sub .",
+        "cp /usr/share/automake-*/config.guess ."
       ]
     }
   ]

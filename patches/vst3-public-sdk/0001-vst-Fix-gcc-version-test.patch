@@ -1,0 +1,29 @@
+From cb366334bf2adafeb227029f4c52c33213aaeb73 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Hubert=20Figui=C3=A8re?= <hub@figuiere.net>
+Date: Fri, 19 Sep 2025 13:21:38 -0400
+Subject: [PATCH 1/2] vst: Fix gcc version test
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Hubert Figuière <hub@figuiere.net>
+---
+ source/vst/hosting/module_linux.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/source/vst/hosting/module_linux.cpp b/source/vst/hosting/module_linux.cpp
+index df085c7..ec375c8 100644
+--- a/source/vst/hosting/module_linux.cpp
++++ b/source/vst/hosting/module_linux.cpp
+@@ -43,7 +43,7 @@
+ #include <sys/utsname.h>
+ #include <unistd.h>
+ 
+-#if (__cplusplus >= 201707L)
++#if (__cplusplus >= 201703L)
+ #if __has_include(<filesystem>)
+ #define USE_EXPERIMENTAL_FS 0
+ #elif __has_include(<experimental/filesystem>)
+-- 
+2.50.1
+

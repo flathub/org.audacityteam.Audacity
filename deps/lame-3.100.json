@@ -30,7 +30,7 @@
       "type": "script",
       "dest-filename": "autogen.sh",
       "commands": [
-        "autoreconf -vfi"
+        "autoreconf -I /usr/share/gettext/m4 -vfi"
       ]
     }
   ],
