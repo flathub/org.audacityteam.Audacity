@@ -1,4 +1,4 @@
-From dc6e38a7439be0a2875d042b8c27a12d5f35b79e Mon Sep 17 00:00:00 2001
+From a83e1ae08f5d59a6b010cc4c2600a17ae1936f25 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hubert=20Figui=C3=A8re?= <hub@figuiere.net>
 Date: Fri, 19 Sep 2025 10:17:29 -0400
 Subject: [PATCH 2/5] c++: requiring std++fs is an ubuntu-ism
@@ -13,7 +13,7 @@ Signed-off-by: Hubert Figuière <hub@figuiere.net>
  2 files changed, 1 insertion(+), 2 deletions(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index cb1588291..5d26375d6 100644
+index 040bf4865..583ce587d 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -472,7 +472,6 @@ if( ${_OPT}has_vst3 AND CMAKE_CXX_COMPILER_ID MATCHES "GNU" )
@@ -38,5 +38,5 @@ index 80e2c30d6..e7f8c2051 100644
  #define USE_EXPERIMENTAL_FS 0
  #elif __has_include(<experimental/filesystem>)
 -- 
-2.50.1
+2.51.0
 
