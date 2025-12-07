@@ -1,4 +1,4 @@
-From 013512570624ad0bde0c74d40894016b18e213e3 Mon Sep 17 00:00:00 2001
+From 79b56c45a966e91b05ca7fab3795d167ad6d3592 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hubert=20Figui=C3=A8re?= <hub@figuiere.net>
 Date: Fri, 19 Sep 2025 10:18:08 -0400
 Subject: [PATCH 3/5] appstream: Add mandatory screenshot
@@ -10,25 +10,26 @@ Upstream doesn't care
 
 Signed-off-by: Hubert Figuière <hub@figuiere.net>
 ---
- help/audacity.appdata.xml | 5 +++++
- 1 file changed, 5 insertions(+)
+ help/audacity.appdata.xml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
 diff --git a/help/audacity.appdata.xml b/help/audacity.appdata.xml
-index bb32ec406..05cf2f9a6 100644
+index 559c13205..5cfdd6761 100644
 --- a/help/audacity.appdata.xml
 +++ b/help/audacity.appdata.xml
-@@ -25,6 +25,11 @@
+@@ -25,6 +25,12 @@
      <category>Audio</category>
    </categories>
    <content_rating type="oars-1.1" />
 +  <screenshots>
 +    <screenshot type="default">
 +      <image>https://github.com/flathub/org.audacityteam.Audacity/raw/95ac50436bfcbbcd032b406544ff806c206d8333/screenshots/main-window.jpg</image>
++      <caption>Main Window</caption>
 +    </screenshot>
 +  </screenshots>
    <url type="homepage">https://www.audacityteam.org/</url>
    <url type="bugtracker">https://github.com/audacity/audacity/issues</url>
    <url type="faq">https://manual.audacityteam.org/man/faq.html</url>
 -- 
-2.50.1
+2.51.0
 

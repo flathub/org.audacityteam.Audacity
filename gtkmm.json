@@ -4,7 +4,7 @@
         {
             "name": "sigc++-2",
             "cleanup": [
-                "/lib/sigc++-2.0"
+                "*"
             ],
             "config-opts": [
                 "--disable-documentation"
@@ -23,7 +23,7 @@
                 "--disable-documentation"
             ],
             "cleanup": [
-                "/lib/cairomm-1.0"
+                "*"
             ],
             "sources": [
                 {
@@ -36,9 +36,7 @@
         {
             "name": "glibmm",
             "cleanup": [
-                "/lib/giomm-2.4",
-                "/lib/glibmm-2.4",
-                "/share/devhelp"
+                "*"
             ],
             "sources": [
                 {
@@ -51,7 +49,7 @@
         {
             "name": "pangomm",
             "cleanup": [
-                "/lib/pangomm-1.4"
+                "*"
             ],
             "config-opts": [
                 "--disable-documentation"
@@ -74,7 +72,7 @@
                 "--disable-documentation"
             ],
             "cleanup": [
-                "/lib/atkmm-1.6"
+                "*"
             ],
             "sources": [
                 {
@@ -86,9 +84,7 @@
         }
     ],
     "cleanup": [
-        "/lib/pkgconfig",
-        "/lib/gdkmm-3.0",
-        "/lib/gtkmm-3.0"
+        "*"
     ],
     "config-opts": [
         "--disable-documentation"

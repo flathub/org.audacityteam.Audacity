@@ -1,4 +1,4 @@
-From 2d04f7e843fdadc008aa453eb29a47bfca71d931 Mon Sep 17 00:00:00 2001
+From fb3defc898fd655496e64dcb9cd2adbd1fe8e45c Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hubert=20Figui=C3=A8re?= <hub@figuiere.net>
 Date: Fri, 19 Sep 2025 10:20:08 -0400
 Subject: [PATCH 5/5] cmake: CMake hate compatibility
@@ -26,5 +26,5 @@ index dea6e1102..bdd688e98 100644
        RESULT_VARIABLE vst3sdk_configure_result
     )
 -- 
-2.50.1
+2.51.0
 

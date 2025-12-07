@@ -40,6 +40,7 @@ add-extensions:
 cleanup:
   - /include
   - /lib/pkgconfig
+  - /lib/cmake
   - /share/aclocal
   - /share/man
   - '*.la'
@@ -140,6 +141,8 @@ modules:
         -DSQLITE_ENABLE_DBSTAT_VTAB=1
     config-opts:
       - --enable-fts5
+    cleanup:
+      - /bin
     sources:
       - type: archive
         url: https://www.sqlite.org/2020/sqlite-autoconf-3340000.tar.gz
@@ -180,6 +183,8 @@ modules:
 
   - name: rapidjson
     buildsystem: cmake-ninja
+    cleanup:
+      - /share/doc/RapidJSON
     config-opts:
       - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       - -DRAPIDJSON_BUILD_DOC=OFF
@@ -194,6 +199,8 @@ modules:
         paths:
           - patches/0001-rapidjson-gcc14.patch
 
+  # This is only needed because of the VST3 SDK
+  # built during the "configure" phase of audacity CMake.
   - gtkmm.json
 
   - name: audacity
