@@ -248,8 +248,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/audacity/audacity.git
-        commit: 2b969c97b71fb6184c4bf9f9060b02ed7df406ba
-        tag: Audacity-3.7.6
+        commit: 5ef610ed23260d6d648175735bb16b32536eb30b
+        tag: Audacity-3.7.7
         x-checker-data:
           type: git
           tag-pattern: ^Audacity-([\d.]+)$
