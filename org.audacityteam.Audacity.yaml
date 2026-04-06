@@ -2,7 +2,7 @@ app-id: org.audacityteam.Audacity
 # freedesktop-sdk should work too, but causes problems with
 # the timeline mouse cursor on some systems for unknown reasons
 runtime: org.gnome.Platform
-runtime-version: '49'
+runtime-version: '50'
 sdk: org.gnome.Sdk
 command: audacity
 rename-desktop-file: audacity.desktop
@@ -63,6 +63,7 @@ modules:
       - type: git
         url: https://github.com/wxWidgets/wxWidgets.git
         tag: v3.2.6
+        commit: 5ff25322553c1870cf20a2e1ba6f20ed50d9fe9a
 
   - deps/lame-3.100.json
   - deps/libid3tag/libid3tag.json
@@ -147,7 +148,6 @@ modules:
     config-opts:
       - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DCMAKE_INSTALL_LIBDIR=/app/lib
       - -DAUDACITY_BUILD_LEVEL=2
       - -Dgtk=gtk+-3.0
       - -Dglib=glib-2.0
