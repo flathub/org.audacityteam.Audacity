@@ -21,7 +21,7 @@ finish-args:
   - --env=LD_LIBRARY_PATH=/app/lib/audacity
   - --env=ALSA_CONFIG_PATH=
   # JACK support via pipewire
-  - --filesystem=xdg-run/pipewire-0
+  - --filesystem=xdg-run/pipewire-0:ro
 
 add-extensions:
   org.audacityteam.Audacity.Codecs:
