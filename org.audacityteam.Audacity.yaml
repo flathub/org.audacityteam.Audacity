@@ -21,7 +21,7 @@ finish-args:
   - --env=LD_LIBRARY_PATH=/app/lib/audacity
   - --env=ALSA_CONFIG_PATH=
   # JACK support via pipewire
-  - --filesystem=xdg-run/pipewire-0
+  - --filesystem=xdg-run/pipewire-0:ro
 
 add-extensions:
   org.freedesktop.LinuxAudio.Plugins:
@@ -117,7 +117,16 @@ modules:
 
   - shared-modules/linux-audio/lv2.json
   - shared-modules/linux-audio/lilv.json
-  - deps/suil.json
+
+  - name: suil
+    buildsystem: meson
+    cleanup:
+      - /bin
+      - /etc
+    sources:
+      - type: archive
+        url: http://download.drobilla.net/suil-0.10.26.tar.xz
+        sha256: 62808916602c47d201a1ec2d246323a8048243f2bf972f859f0db1db4662ee43
 
   - name: rapidjson
     buildsystem: cmake-ninja
