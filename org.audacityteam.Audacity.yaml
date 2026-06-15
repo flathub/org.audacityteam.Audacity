@@ -146,10 +146,6 @@ modules:
         paths:
           - patches/0001-rapidjson-gcc14.patch
 
-  # This is only needed because of the VST3 SDK
-  # built during the "configure" phase of audacity CMake.
-  - gtkmm.json
-
   - name: audacity
     buildsystem: cmake-ninja
     builddir: true
@@ -209,8 +205,8 @@ modules:
       - type: git
         dest: vst3sdk
         url: https://github.com/steinbergmedia/vst3sdk.git
-        tag: v3.7.3_build_20
-        commit: 2cc517019a2681fccf211e6a95776a0af1e16d04
+        tag: v3.7.12_build_20
+        commit: cc2adc90382dded9e347caf74e4532f1458715db
       - type: patch
         options:
           - -d
@@ -228,7 +224,6 @@ modules:
           - -d
           - vst3sdk/public.sdk
         paths:
-          - patches/vst3-public-sdk/0001-vst-Fix-gcc-version-test.patch
           - patches/vst3-public-sdk/0002-c-gcc-compatibility-fix.patch
       - type: script
         dest-filename: audacity.sh
