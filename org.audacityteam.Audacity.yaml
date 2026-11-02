@@ -91,7 +91,8 @@ modules:
       - '*'
     sources:
       - type: archive
-        url: https://alioth-archive.debian.org/releases/chrpath/chrpath/0.16/chrpath-0.16.tar.gz
+        url: 
+          https://alioth-archive.debian.org/releases/chrpath/chrpath/0.16/chrpath-0.16.tar.gz
         sha256: bb0d4c54bac2990e1bdf8132f2c9477ae752859d523e141e72b3b11a12c26e7b
 
   - shared-modules/libmad/libmad.json
@@ -190,8 +191,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/audacity/audacity.git
-        commit: 6120ce413cf8abd4cca7f9470915f0ff0a0d2ded
-        tag: Audacity-3.7.8
+        commit: 7472497768314bcd4c641ef6dc91e366d92b2fcc
+        tag: Audacity-4.0.2
         x-checker-data:
           type: git
           tag-pattern: ^Audacity-([\d.]+)$
