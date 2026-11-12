@@ -1,26 +1,20 @@
 app-id: org.audacityteam.Audacity
-# freedesktop-sdk should work too, but causes problems with
-# the timeline mouse cursor on some systems for unknown reasons
-runtime: org.gnome.Platform
-runtime-version: '50'
-sdk: org.gnome.Sdk
+runtime: org.kde.Platform
+runtime-version: '6.11'
+sdk: org.kde.Sdk
 command: audacity
-rename-desktop-file: audacity.desktop
 rename-icon: audacity
-rename-appdata-file: audacity.appdata.xml
-rename-mime-file: audacity.xml
 finish-args:
   - --share=ipc
+  - --share=network
+  # Audacity 4 forces QT_QPA_PLATFORM=xcb (src/app/main.cpp), so X11 is required
   - --socket=x11
-  - --share=network # Audacity uses network sockets for IPC
   - --socket=pulseaudio
   - --device=dri
-  - --filesystem=host
-  # mod-script-pipe provides named pipes in /tmp
-  - --filesystem=/tmp
-  - --env=LD_LIBRARY_PATH=/app/lib/audacity
-  - --env=ALSA_CONFIG_PATH=
-  # JACK support via pipewire
+  # Projects are SQLite databases: SQLite needs real directory access (journal/temp files next to
+  # the .aup4), which the document portal cannot provide
+  - --filesystem=home
+  # JACK support via pipewire (portaudio is built with JACK, libjack/libpipewire are linked)
   - --filesystem=xdg-run/pipewire-0:ro
 
 add-extensions:
@@ -36,195 +30,54 @@ cleanup:
   - /include
   - /lib/pkgconfig
   - /lib/cmake
-  - /share/aclocal
   - /share/man
   - '*.la'
   - '*.a'
+
 modules:
-  - name: wxwidgets
-    rm-configure: true
-    config-opts:
-      - --with-libpng
-      - --with-zlib
-      - --with-cxx=14
-      - --disable-sdltest
-      - --disable-webview
-      - --disable-webviewwebkit
-      - --disable-ribbon
-      - --disable-propgrid
-      - --disable-richtext
-      - --with-expat=builtin
-      - --with-libiconv=/usr
-    cleanup:
-      - /bin
-      - /lib/wx
-      - /share/bakefile
-    sources:
-      - type: git
-        url: https://github.com/wxWidgets/wxWidgets.git
-        tag: v3.2.6
-        commit: 5ff25322553c1870cf20a2e1ba6f20ed50d9fe9a
-
-  - deps/libid3tag/libid3tag.json
-
-  - name: sqlite
-    # version bundled with runtime is missing the SQLITE_DBPAGE virtual table
-    build-options:
-      cflags: >
-        -DSQLITE_ENABLE_COLUMN_METADATA=1
-        -DSQLITE_SECURE_DELETE=1
-        -DSQLITE_ENABLE_FTS3=1
-        -DSQLITE_ENABLE_UNLOCK_NOTIFY=1
-        -DSQLITE_ENABLE_DBPAGE_VTAB=1
-        -DSQLITE_ENABLE_DBSTAT_VTAB=1
-    config-opts:
-      - --enable-fts5
-    cleanup:
-      - /bin
-    sources:
-      - type: archive
-        url: https://www.sqlite.org/2020/sqlite-autoconf-3340000.tar.gz
-        sha256: bf6db7fae37d51754737747aaaf413b4d6b3b5fbacd52bdb2d0d6e5b2edd9aee
-
-  - name: chrpath
+  # Needed by Audacity's bundled-dependency build (muse_deps) to relocate ELF files
+  - name: patchelf
     cleanup:
       - '*'
     sources:
       - type: archive
-        url: https://alioth-archive.debian.org/releases/chrpath/chrpath/0.16/chrpath-0.16.tar.gz
-        sha256: bb0d4c54bac2990e1bdf8132f2c9477ae752859d523e141e72b3b11a12c26e7b
-
-  - shared-modules/libmad/libmad.json
-  - name: portaudio
-    buildsystem: cmake-ninja
-    config-opts:
-      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
-      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-    sources:
-      - type: archive
-        url: https://github.com/PortAudio/portaudio/archive/refs/tags/v19.7.0.tar.gz
-        sha256: 5af29ba58bbdbb7bbcefaaecc77ec8fc413f0db6f4c4e286c40c3e1b83174fa0
-  - name: portmidi
-    buildsystem: cmake-ninja
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-    sources:
-      - type: archive
-        url: https://github.com/PortMidi/portmidi/archive/refs/tags/v2.0.4.tar.gz
-        sha256: 64893e823ae146cabd3ad7f9a9a9c5332746abe7847c557b99b2577afa8a607c
-    cleanup:
-      - /bin
-
-  - shared-modules/linux-audio/lv2.json
-  - shared-modules/linux-audio/lilv.json
-
-  - name: suil
-    buildsystem: meson
-    cleanup:
-      - /bin
-      - /etc
-    sources:
-      - type: archive
-        url: http://download.drobilla.net/suil-0.10.26.tar.xz
-        sha256: 62808916602c47d201a1ec2d246323a8048243f2bf972f859f0db1db4662ee43
-
-  - name: rapidjson
-    buildsystem: cmake-ninja
-    cleanup:
-      - /share/doc/RapidJSON
-    config-opts:
-      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
-      - -DRAPIDJSON_BUILD_DOC=OFF
-      - -DRAPIDJSON_BUILD_EXAMPLES=OFF
-      - -DRAPIDJSON_BUILD_TESTS=OFF
-      - -DRAPIDJSON_BUILD_THIRDPARTY_GTEST=OFF
-    sources:
-      - type: archive
-        url: https://github.com/miloyip/rapidjson/archive/v1.1.0.tar.gz
-        sha256: bf7ced29704a1e696fbccf2a2b4ea068e7774fa37f6d7dd4039d0787f8bed98e
-      - type: patch
-        paths:
-          - patches/0001-rapidjson-gcc14.patch
+        url: https://github.com/NixOS/patchelf/releases/download/0.18.0/patchelf-0.18.0.tar.bz2
+        sha256: 1952b2a782ba576279c211ee942e341748fdb44997f704dd53def46cd055470b
 
   - name: audacity
     buildsystem: cmake-ninja
     builddir: true
+    build-options:
+      # bundled wxWidgets zlib (C89-style code) fails with GCC >= 14 otherwise
+      cflags: -Wno-error=implicit-function-declaration
     config-opts:
-      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
-      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DAUDACITY_BUILD_LEVEL=2
-      - -Dgtk=gtk+-3.0
-      - -Dglib=glib-2.0
-      - -DwxWidgets_INCLUDE_DIRS=/app/include/wx-3.1;/app/lib/wx/include/gtk3-unicode-3.1
-      - -DwxWidgets_CXX_FLAGS=-pthread
-      - -DwxWidgets_DEFINITIONS_GENERAL=WXUSINGDLL;__WXGTK__;_FILE_OFFSET_BITS=64
-      - -DwxWidgets_LIBRARIES=-lwx_gtk3u_xrc-3.1;-lwx_gtk3u_html-3.1;-lwx_gtk3u_qa-3.1;-lwx_gtk3u_core-3.1;-lwx_baseu_xml-3.1;-lwx_baseu_net-3.1;-lwx_baseu-3.1
-      - -Daudacity_lib_preference=system
-      - -Daudacity_obey_system_dependencies=On
-      - -Daudacity_use_wxwidgets=system
-      - -Daudacity_use_soxr=local
-      - -Daudacity_use_portaudio=system
-      - -Daudacity_use_vamp=local
-      - -Daudacity_use_midi=system
-      - -Daudacity_use_portsmf=local
-      - -Daudacity_use_sbsms=local
-      - -Daudacity_use_soundtouch=local
-      - -Daudacity_use_portmixer=On
-      - -Daudacity_use_nyquist=On
-      - -Daudacity_use_twolame=local
-      - -Daudacity_has_networking=no
-      - -Daudacity_has_updates_check=NO
-      - -Daudacity_has_vst3=On
-      - -Daudacity_use_vst3sdk=system
-      - -Daudacity_conan_enabled=Off
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DAU4_BUILD_CONFIGURATION=app
+      - -DAU4_BUILD_MODE=release
+      - -DMUSE_ENABLE_UNIT_TESTS=OFF
+      - -DMUSE_MODULE_DIAGNOSTICS_CRASHPAD_CLIENT=OFF
+      # Dependency sources are bundled in the release tarball; no network at build time
+      - -DEXTDEPS_CACHE=/run/build/audacity/offline-deps
     post-install:
-      - chrpath -d /app/bin/audacity
-      - mv /app/bin/audacity{,.bin}
+      # Fix-ups for the upstream AppImage-oriented desktop file / metainfo
+      - desktop-file-edit --set-key=Name --set-value=Audacity --set-key=Exec --set-value="audacity %F" /app/share/applications/org.audacityteam.Audacity.desktop
+      - sed -i 's|>audacity.desktop<|>org.audacityteam.Audacity.desktop<|' /app/share/metainfo/org.audacityteam.Audacity.appdata.xml
+      # Flathub requires a screenshot; upstream ships none
+      - sed -i '/<url type="homepage">/i\  <screenshots><screenshot type="default"><image>https://github.com/flathub/org.audacityteam.Audacity/raw/95ac50436bfcbbcd032b406544ff806c206d8333/screenshots/main-window.png</image><caption>Main Window</caption></screenshot></screenshots>' /app/share/metainfo/org.audacityteam.Audacity.appdata.xml
+      - mv /app/bin/audacity /app/bin/audacity.bin
       - install -Dm755 ../audacity.sh /app/bin/audacity
-      - install -Dm644 ../help/audacity.appdata.xml -t /app/share/metainfo
       - install -d /app/extensions/Plugins
-      - desktop-file-edit --set-key=Exec --set-value="audacity %F" /app/share/applications/audacity.desktop
-    cleanup:
-      - /share/audacity/include
-      - /share/pixmaps
     sources:
-      - type: git
-        url: https://github.com/audacity/audacity.git
-        commit: 6120ce413cf8abd4cca7f9470915f0ff0a0d2ded
-        tag: Audacity-3.7.8
+      - type: archive
+        url: https://github.com/audacity/audacity/releases/download/Audacity-4.0.2/audacity-sources-4.0.2.tar.xz
+        sha256: 4799c2ce2deabacf2be8d6d6b3c5a5621bcd3aacf7c1c38bd0a3f2598f1034c0
         x-checker-data:
-          type: git
-          tag-pattern: ^Audacity-([\d.]+)$
+          type: json
+          url: https://api.github.com/repos/audacity/audacity/releases/latest
+          version-query: .tag_name | sub("^Audacity-"; "")
+          url-query: .assets[] | select(.name=="audacity-sources-" + $version + ".tar.xz") | .browser_download_url
       - type: patch
-        paths:
-          - patches/audacity/0001-flatpak-Hardcode-the-proper-path-to-suil.patch
-          - patches/audacity/0002-c-requiring-std-fs-is-an-ubuntu-ism.patch
-          - patches/audacity/0003-appstream-Add-mandatory-screenshot.patch
-          - patches/audacity/0004-vst-Set-proper-path-since-it-ignore-VST_PATH.patch
-          - patches/audacity/0005-cmake-CMake-hate-compatibility.patch
-      - type: git
-        dest: vst3sdk
-        url: https://github.com/steinbergmedia/vst3sdk.git
-        tag: v3.7.12_build_20
-        commit: cc2adc90382dded9e347caf74e4532f1458715db
-      - type: patch
-        options:
-          - -d
-          - vst3sdk/cmake
-        paths:
-          - patches/vst3-cmake/0001-build-don-t-add-libstdc-fs.patch
-      - type: patch
-        options:
-          - -d
-          - vst3sdk/pluginterfaces
-        paths:
-          - patches/vst3-pluginterfaces/0001-c-gcc-compatibility-fix.patch
-      - type: patch
-        options:
-          - -d
-          - vst3sdk/public.sdk
-        paths:
-          - patches/vst3-public-sdk/0002-c-gcc-compatibility-fix.patch
+        path: patches/0001-extdeps-install-libs-to-lib.patch
       - type: script
         dest-filename: audacity.sh
         commands:

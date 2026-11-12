@@ -1,44 +1,74 @@
 Flatpak notes
 =============
 
-`LV2_PATH` is set in a wrapper script because variable substitution
-doesn't work.
+This Flatpak packages Audacity 4 (Qt 6 / MuseScore `muse` framework). It is
+a complete rewrite of the Audacity 3.x (wxWidgets) packaging; none of the old
+modules or patches apply anymore.
 
-There are many patches to allow Audacity to build or work:
+How it is built
+---------------
 
-- `patches/audacity/0001-flatpak-Hardcode-the-proper-path-to-suil.patch`:
-  is necessary for suil (LV2 UI) to work. A fix was submitted upstream
-  in the past but was ignored.  This version of the patch is highly
-  specific to flatpak.
-- `patches/audacity/0002-c-requiring-std-fs-is-an-ubuntu-ism.patch`:
-  Because of ubuntu they add libstdc++fs to the link line without
-  checking.  It's not in the SDK. It's not needed either.
-- `patches/audacity/0003-appstream-Add-mandatory-screenshot.patch`:
-  before 3.4, Audacity pulled the rug by removing the screenshot, and
-  removing them from the appstream file. This is the path of least
-  resistance.
-- `patches/audacity/0004-vst-Set-proper-path-since-it-ignore-VST_PATH.patch`:
-  `VST_PATH` doesn't need to be set (it's ignored). We patched the
-  default location in the source. See
-  https://github.com/flathub/org.audacityteam.Audacity/issues/139
-- `patches/audacity/0005-cmake-CMake-hate-compatibility.patch`: In
-  25.08 CMake is incompatible. And the build system call cmake to
-  build the VST3 SDK so we need to patch too.
+- Runtime: `org.kde.Platform` / `org.kde.Sdk` 6.11. It already provides every
+  Qt module Audacity needs (Graphs, Quick3D, Core5Compat, NetworkAuth,
+  ShaderTools, WebSockets, StateMachine).
+- Source: the official release tarball `audacity-sources-<version>.tar.xz`
+  from the Audacity GitHub releases. It contains the `muse` / `muse_deps`
+  submodules and `offline-deps/downloads` (sources of all bundled
+  dependencies), so the build needs no network access. See `OFFLINE_BUILD.md`
+  inside the tarball.
+- The `audacity` module is a single `cmake-ninja` module. Audacity's
+  `muse_deps` builds its own dependencies (libsndfile, FLAC, opus, wxWidgets
+  for the legacy AU3 code, ...) from `-DEXTDEPS_CACHE=<tarball>/offline-deps`.
+- `x-checker-data` follows the latest GitHub release, so
+  flatpak-external-data-checker can open update PRs with the new tarball URL
+  and checksum.
 
-There are a few patch for the VST3 SDK. Due to the nature of git
-submodules, there are more patches that necessary.
+Things worth knowing
+--------------------
 
-- `patches/vst3-cmake/0001-build-don-t-add-libstdc-fs.patch`
-- `patches/vst3-public-sdk/0001-vst-Fix-gcc-version-test.patch`: Same as
-  above, but we also need to fix the version detection.
-- `patches/vst3-pluginterfaces/0001-c-gcc-compatibility-fix.patch`
-- `patches/vst3-public-sdk/0002-c-gcc-compatibility-fix.patch`: These
-  2 patches fix includes with newer gcc.
+- `patchelf` module: `muse_deps` uses it to relocate the ELF files of the
+  libraries it builds. It is not in the SDK.
+- `patches/0001-extdeps-install-libs-to-lib.patch`: `muse_deps` sub-builds
+  installed into `lib64` here, but its resolver only looks in `lib`. The patch
+  passes `-DCMAKE_INSTALL_LIBDIR=lib`. Check on each update whether it still
+  applies / is still needed.
+- `cflags: -Wno-error=implicit-function-declaration`: the bundled wxWidgets
+  zlib uses implicit function declarations, an error since GCC 14.
+- Audacity 4 forces `QT_QPA_PLATFORM=xcb` (`src/app/main.cpp`), so the
+  Flatpak needs `--socket=x11`; there is no native Wayland support. Do not
+  use `fallback-x11` (it grants nothing on a Wayland session).
+- Post-install fix-ups for the upstream desktop file and metainfo:
+  - desktop entry name is "Audacity 4 Portable" upstream, set to "Audacity"
+  - metainfo `launchable` points to `audacity.desktop`, fixed to
+    `org.audacityteam.Audacity.desktop`
+  - upstream ships no screenshot (mandatory for Flathub); one is injected
+    (TODO: the current one is from Audacity 3, replace it)
+  - these `sed` calls run before the builder renames `.appdata.xml` to
+    `.metainfo.xml`
+- `audacity.sh` wrapper: `LADSPA_PATH`, `VST3_PATH` and `LV2_PATH` are set in a
+  wrapper script because variable substitution doesn't work in `finish-args`.
+  The plugin extension point is `org.freedesktop.LinuxAudio.Plugins`.
 
-To update the patches the follow github repositories will contain the
-patchsets:
-https://github.com/hfiguiere/vst3_cmake.git
-https://github.com/hfiguiere/vst3_pluginterfaces.git
-https://github.com/hfiguiere/vst3_public_sdk.git
+Building locally
+----------------
 
-Checkout the branch `audacity-flatpak-patches`
+```
+flatpak install --user flathub org.kde.Sdk//6.11 org.flatpak.Builder
+flatpak run org.flatpak.Builder --user --force-clean --install-deps-from=flathub \
+  --repo=repo build org.audacityteam.Audacity.yaml
+flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest org.audacityteam.Audacity.yaml
+flatpak build-update-repo repo
+flatpak remote-add --user --no-gpg-verify local repo
+flatpak install --user local org.audacityteam.Audacity
+```
+
+Known TODOs
+-----------
+
+- Replace the stopgap screenshot with an Audacity 4 one and fix the upstream
+  release entry in the metainfo (upstream still lists "4.0.0 beta").
+- Review `finish-args` (`--filesystem=host`, `--filesystem=/tmp`,
+  `--share=network`).
+- Test audio I/O, plugin loading (LV2/VST3/LADSPA) and `mod-script-pipe`.
+- Ideas to upstream: `lib` vs `lib64` in `muse_deps`, the desktop entry name,
+  the metainfo launchable/screenshot/release data, native Wayland.

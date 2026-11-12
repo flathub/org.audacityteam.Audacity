@@ -1,0 +1,10 @@
+--- a/muse_deps/buildtools/build_dependency.cmake
++++ b/muse_deps/buildtools/build_dependency.cmake
+@@ -133,6 +133,7 @@
+     set(_configure_args -S "${srcdir}" -B "${BUILD}" -G "${_bd_generator}"
+             -DCMAKE_BUILD_TYPE=${BD_CONFIG}
+             -DCMAKE_INSTALL_PREFIX=${INSTALL}
++            -DCMAKE_INSTALL_LIBDIR=lib
+             -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+             ${_dep_cmake_args})
+ 
