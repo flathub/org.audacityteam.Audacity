@@ -88,7 +88,7 @@ modules:
       - desktop-file-edit --set-key=Name --set-value=Audacity --set-key=Exec --set-value="audacity %F" /app/share/applications/org.audacityteam.Audacity.desktop
       - sed -i 's|>audacity.desktop<|>org.audacityteam.Audacity.desktop<|' /app/share/metainfo/org.audacityteam.Audacity.appdata.xml
       # Flathub requires a screenshot; upstream ships none
-      - sed -i '/<url type="homepage">/i\  <screenshots><screenshot type="default"><image>https://github.com/flathub/org.audacityteam.Audacity/raw/95ac50436bfcbbcd032b406544ff806c206d8333/screenshots/main-window.png</image><caption>Main Window</caption></screenshot></screenshots>' /app/share/metainfo/org.audacityteam.Audacity.appdata.xml
+      - sed -i '/<url type="homepage">/i\  <screenshots><screenshot type="default"><image>https://raw.githubusercontent.com/flathub/org.audacityteam.Audacity/refs/heads/master/screenshots/main-window.jpg</image><caption>Main Window</caption></screenshot></screenshots>' /app/share/metainfo/org.audacityteam.Audacity.appdata.xml
       - mv /app/bin/audacity /app/bin/audacity.bin
       - install -Dm755 ../audacity.sh /app/bin/audacity
       - install -d /app/extensions/Plugins
